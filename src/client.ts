@@ -1,6 +1,6 @@
 import { buildAuthSchemes, type AuthSchemes } from "./auth-schemes.js";
 import { DEFAULT_CLIENT_OPTIONS, type ClientOptions } from "./client-options.js";
-import { RawClient } from "./core/index.js";
+import { RawClient } from "./core/raw-client.js";
 import { Charging } from "./resources/charging.js";
 import { Energy } from "./resources/energy.js";
 import { Partner } from "./resources/partner.js";
