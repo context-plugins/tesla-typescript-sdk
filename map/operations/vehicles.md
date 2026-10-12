@@ -4,16 +4,17 @@
 
 Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operations · Request types: namespace `Vehicles`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `tesla-fleet-management-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `tesla-fleet-management-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### configureFleetTelemetryUsingSignedJwsToken
 
-- **Signature**: `configureFleetTelemetryUsingSignedJwsToken(request: Vehicles.ConfigureFleetTelemetryUsingSignedJwsTokenRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ResponseError>`
+- **Signature**: `configureFleetTelemetryUsingSignedJwsToken(request: Vehicles.ConfigureFleetTelemetryUsingSignedJwsTokenRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ApiError>`
 - **Wire**: `POST /api/1/vehicles/fleet_telemetry_config_jws`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Record<string, unknown>` — a bare `application/json` map; the success type *is* the map
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.ConfigureFleetTelemetryUsingSignedJwsTokenRequest` (1):
 
@@ -27,12 +28,13 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### createOrUpdateFleetTelemetryConfiguration
 
-- **Signature**: `createOrUpdateFleetTelemetryConfiguration(request: Vehicles.CreateOrUpdateFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ResponseError>`
+- **Signature**: `createOrUpdateFleetTelemetryConfiguration(request: Vehicles.CreateOrUpdateFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ApiError>`
 - **Wire**: `POST /api/1/vehicles/fleet_telemetry_config`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field, a bare top-level JSON map with no fixed keys
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Record<string, unknown>` — a bare `application/json` map; the success type *is* the map
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.CreateOrUpdateFleetTelemetryConfigurationRequest` (1):
 
@@ -42,12 +44,13 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### deleteFleetTelemetryConfiguration
 
-- **Signature**: `deleteFleetTelemetryConfiguration(request: Vehicles.DeleteFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ResponseError>`
+- **Signature**: `deleteFleetTelemetryConfiguration(request: Vehicles.DeleteFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ApiError>`
 - **Wire**: `DELETE /api/1/vehicles/{vehicle_tag}/fleet_telemetry_config`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Record<string, unknown>` — a bare `application/json` map; the success type *is* the map
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.DeleteFleetTelemetryConfigurationRequest` (1):
 
@@ -57,12 +60,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### getAllowedDriversForAVehicle
 
-- **Signature**: `getAllowedDriversForAVehicle(request: Vehicles.GetAllowedDriversForAVehicleRequest, options?: RequestOptions): ApiPromise<DriversResponse, ResponseError>`
+- **Signature**: `getAllowedDriversForAVehicle(request: Vehicles.GetAllowedDriversForAVehicleRequest, options?: RequestOptions): ApiPromise<DriversResponse, ApiError>`
 - **Wire**: `GET /api/1/vehicles/{vehicle_tag}/drivers`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `DriversResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.GetAllowedDriversForAVehicleRequest` (1):
 
@@ -76,12 +79,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### getEligibleVehicleSubscriptions
 
-- **Signature**: `getEligibleVehicleSubscriptions(request: Vehicles.GetEligibleVehicleSubscriptionsRequest, options?: RequestOptions): ApiPromise<SiteInfoResponse, ResponseError>`
+- **Signature**: `getEligibleVehicleSubscriptions(request: Vehicles.GetEligibleVehicleSubscriptionsRequest, options?: RequestOptions): ApiPromise<SiteInfoResponse, ApiError>`
 - **Wire**: `GET /api/1/dx/vehicles/subscriptions/eligibility`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `SiteInfoResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.GetEligibleVehicleSubscriptionsRequest` (1):
 
@@ -95,12 +98,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### getEligibleVehicleUpgrades
 
-- **Signature**: `getEligibleVehicleUpgrades(request: Vehicles.GetEligibleVehicleUpgradesRequest, options?: RequestOptions): ApiPromise<SiteInfoResponse, ResponseError>`
+- **Signature**: `getEligibleVehicleUpgrades(request: Vehicles.GetEligibleVehicleUpgradesRequest, options?: RequestOptions): ApiPromise<SiteInfoResponse, ApiError>`
 - **Wire**: `GET /api/1/dx/vehicles/upgrades/eligibility`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `SiteInfoResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.GetEligibleVehicleUpgradesRequest` (1):
 
@@ -114,12 +117,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### getEnterpriseRolesForAVehicle
 
-- **Signature**: `getEnterpriseRolesForAVehicle(request: Vehicles.GetEnterpriseRolesForAVehicleRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ResponseError>`
+- **Signature**: `getEnterpriseRolesForAVehicle(request: Vehicles.GetEnterpriseRolesForAVehicleRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ApiError>`
 - **Wire**: `GET /api/1/dx/enterprise/v1/{vin}/roles`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Record<string, unknown>` — a bare `application/json` map; the success type *is* the map
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.GetEnterpriseRolesForAVehicleRequest` (1):
 
@@ -129,12 +132,13 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### getFleetStatusForVehicles
 
-- **Signature**: `getFleetStatusForVehicles(request: Vehicles.GetFleetStatusForVehiclesRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ResponseError>`
+- **Signature**: `getFleetStatusForVehicles(request: Vehicles.GetFleetStatusForVehiclesRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ApiError>`
 - **Wire**: `POST /api/1/vehicles/fleet_status`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Record<string, unknown>` — a bare `application/json` map; the success type *is* the map
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.GetFleetStatusForVehiclesRequest` (1):
 
@@ -148,12 +152,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### getFleetTelemetryConfiguration
 
-- **Signature**: `getFleetTelemetryConfiguration(request: Vehicles.GetFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ResponseError>`
+- **Signature**: `getFleetTelemetryConfiguration(request: Vehicles.GetFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ApiError>`
 - **Wire**: `GET /api/1/vehicles/{vehicle_tag}/fleet_telemetry_config`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Record<string, unknown>` — a bare `application/json` map; the success type *is* the map
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.GetFleetTelemetryConfigurationRequest` (1):
 
@@ -163,12 +167,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### getFleetTelemetryErrorsForAVehicle
 
-- **Signature**: `getFleetTelemetryErrorsForAVehicle(request: Vehicles.GetFleetTelemetryErrorsForAVehicleRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ResponseError>`
+- **Signature**: `getFleetTelemetryErrorsForAVehicle(request: Vehicles.GetFleetTelemetryErrorsForAVehicleRequest, options?: RequestOptions): ApiPromise<Record<string, unknown>, ApiError>`
 - **Wire**: `GET /api/1/vehicles/{vehicle_tag}/fleet_telemetry_errors`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Record<string, unknown>` — a bare `application/json` map; the success type *is* the map
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.GetFleetTelemetryErrorsForAVehicleRequest` (1):
 
@@ -178,12 +182,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### getVehicle
 
-- **Signature**: `getVehicle(request: Vehicles.GetVehicleRequest, options?: RequestOptions): ApiPromise<Api1VehiclesResponseResponse200, ResponseError>`
+- **Signature**: `getVehicle(request: Vehicles.GetVehicleRequest, options?: RequestOptions): ApiPromise<Api1VehiclesResponseResponse200, ApiError>`
 - **Wire**: `GET /api/1/vehicles/{vehicle_tag}`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Api1VehiclesResponseResponse200`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.GetVehicleRequest` (1):
 
@@ -197,12 +201,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### listVehicles
 
-- **Signature**: `listVehicles(options?: RequestOptions): ApiPromise<Api1VehiclesResponse, ResponseError>`
+- **Signature**: `listVehicles(options?: RequestOptions): ApiPromise<Api1VehiclesResponse, ApiError>`
 - **Wire**: `GET /api/1/vehicles`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Api1VehiclesResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 | Type | Schema value | Source |
 | --- | --- | --- |
@@ -210,12 +214,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### mobileEnabled
 
-- **Signature**: `mobileEnabled(request: Vehicles.MobileEnabledRequest, options?: RequestOptions): ApiPromise<Api1VehiclesMobileEnabledResponse, ResponseError>`
+- **Signature**: `mobileEnabled(request: Vehicles.MobileEnabledRequest, options?: RequestOptions): ApiPromise<Api1VehiclesMobileEnabledResponse, ApiError>`
 - **Wire**: `GET /api/1/vehicles/{vehicle_tag}/mobile_enabled`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Api1VehiclesMobileEnabledResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.MobileEnabledRequest` (1):
 
@@ -229,12 +233,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### nearbyChargingSites
 
-- **Signature**: `nearbyChargingSites(request: Vehicles.NearbyChargingSitesRequest, options?: RequestOptions): ApiPromise<Api1VehiclesNearbyChargingSitesResponse, ResponseError>`
+- **Signature**: `nearbyChargingSites(request: Vehicles.NearbyChargingSitesRequest, options?: RequestOptions): ApiPromise<Api1VehiclesNearbyChargingSitesResponse, ApiError>`
 - **Wire**: `GET /api/1/vehicles/{vehicle_tag}/nearby_charging_sites`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Api1VehiclesNearbyChargingSitesResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.NearbyChargingSitesRequest` (1):
 
@@ -248,12 +252,13 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### removeDriverAccessFromAVehicle
 
-- **Signature**: `removeDriverAccessFromAVehicle(request: Vehicles.RemoveDriverAccessFromAVehicleRequest, options?: RequestOptions): ApiPromise<SimpleOkResponse, ResponseError>`
+- **Signature**: `removeDriverAccessFromAVehicle(request: Vehicles.RemoveDriverAccessFromAVehicleRequest, options?: RequestOptions): ApiPromise<SimpleOkResponse, ApiError>`
 - **Wire**: `DELETE /api/1/vehicles/{vehicle_tag}/drivers`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `SimpleOkResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.RemoveDriverAccessFromAVehicleRequest` (1):
 
@@ -267,12 +272,13 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### setEnterprisePayerRoles
 
-- **Signature**: `setEnterprisePayerRoles(request: Vehicles.SetEnterprisePayerRolesRequest, options?: RequestOptions): ApiPromise<undefined, ResponseError>`
+- **Signature**: `setEnterprisePayerRoles(request: Vehicles.SetEnterprisePayerRolesRequest, options?: RequestOptions): ApiPromise<undefined, ApiError>`
 - **Wire**: `POST /api/1/dx/enterprise/v1/{vin}/payer`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `undefined` — the operation resolves to nothing
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.SetEnterprisePayerRolesRequest` (2):
 
@@ -287,12 +293,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### vehicleLiveData
 
-- **Signature**: `vehicleLiveData(request: Vehicles.VehicleLiveDataRequest, options?: RequestOptions): ApiPromise<SiteInfoResponse, ResponseError>`
+- **Signature**: `vehicleLiveData(request: Vehicles.VehicleLiveDataRequest, options?: RequestOptions): ApiPromise<SiteInfoResponse, ApiError>`
 - **Wire**: `GET /api/1/vehicles/{vehicle_tag}/vehicle_data`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `SiteInfoResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.VehicleLiveDataRequest` (1):
 
@@ -306,12 +312,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### vehicleOptions
 
-- **Signature**: `vehicleOptions(request: Vehicles.VehicleOptionsRequest, options?: RequestOptions): ApiPromise<Api1DxVehiclesOptionsResponse, ResponseError>`
+- **Signature**: `vehicleOptions(request: Vehicles.VehicleOptionsRequest, options?: RequestOptions): ApiPromise<Api1DxVehiclesOptionsResponse, ApiError>`
 - **Wire**: `GET /api/1/dx/vehicles/options`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Api1DxVehiclesOptionsResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.VehicleOptionsRequest` (1):
 
@@ -325,12 +331,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### vehicleSpecs
 
-- **Signature**: `vehicleSpecs(request: Vehicles.VehicleSpecsRequest, options?: RequestOptions): ApiPromise<SiteInfoResponse, ResponseError>`
+- **Signature**: `vehicleSpecs(request: Vehicles.VehicleSpecsRequest, options?: RequestOptions): ApiPromise<SiteInfoResponse, ApiError>`
 - **Wire**: `GET /api/1/vehicles/{vin}/specs`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `SiteInfoResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.VehicleSpecsRequest` (1):
 
@@ -344,12 +350,13 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### wakeUpVehicle
 
-- **Signature**: `wakeUpVehicle(request: Vehicles.WakeUpVehicleRequest, options?: RequestOptions): ApiPromise<Api1VehiclesWakeUpResponse, ResponseError>`
+- **Signature**: `wakeUpVehicle(request: Vehicles.WakeUpVehicleRequest, options?: RequestOptions): ApiPromise<Api1VehiclesWakeUpResponse, ApiError>`
 - **Wire**: `POST /api/1/vehicles/{vehicle_tag}/wake_up`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `Api1VehiclesWakeUpResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Vehicles.WakeUpVehicleRequest` (1):
 
@@ -363,12 +370,12 @@ Accessor: `client.vehicles` · Source: `src/resources/vehicles.ts` · 21 operati
 
 ### warrantyDetails
 
-- **Signature**: `warrantyDetails(options?: RequestOptions): ApiPromise<Api1DxWarrantyDetailsResponse, ResponseError>`
+- **Signature**: `warrantyDetails(options?: RequestOptions): ApiPromise<Api1DxWarrantyDetailsResponse, ApiError>`
 - **Wire**: `GET /api/1/dx/warranty/details`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `Api1DxWarrantyDetailsResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 | Type | Schema value | Source |
 | --- | --- | --- |

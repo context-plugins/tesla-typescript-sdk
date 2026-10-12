@@ -6,5 +6,5 @@ export type AdjustVolumeRequest = {
 };
 
 export const adjustVolumeRequestSchema: Schema<AdjustVolumeRequest> = s.object<AdjustVolumeRequest>({
-  volume: s.number(),
+  volume: s.int(),
 });

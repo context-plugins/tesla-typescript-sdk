@@ -9,8 +9,8 @@ export type PriceComponent = {
 
 export const priceComponentSchema: Schema<PriceComponent> = s.object<PriceComponent>({
   type: s.optional(s.string()),
-  price: s.optional(s.number()),
-  stepSize: s.optional(s.number()),
+  price: s.optional(s.float64()),
+  stepSize: s.optional(s.float64()),
   _keysMap: {
     stepSize: "step_size",
   },

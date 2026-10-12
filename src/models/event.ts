@@ -8,5 +8,5 @@ export type Event = {
 
 export const eventSchema: Schema<Event> = s.object<Event>({
   timestamp: s.dateTime(),
-  duration: s.number(),
+  duration: s.int(),
 });

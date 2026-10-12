@@ -4,16 +4,17 @@
 
 Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations · Request types: namespace `Energy`
 
-**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `tesla-fleet-management-api`; the `Source` path is where to **read** the shape, never what to import. `ResponseError` and the runtime error family are excluded — see sdk-map.md.
+**Type sources**: every type an operation names, with the file that declares it and the schema value exported beside it. Import every name from `tesla-fleet-management-api`; the `Source` path is where to **read** the shape, never what to import. `ApiError`, the runtime error family and the file vocabulary are excluded — see sdk-map.md.
 
 ### adjustSiteSBackupReserve
 
-- **Signature**: `adjustSiteSBackupReserve(request: Energy.AdjustSiteSBackupReserveRequest, options?: RequestOptions): ApiPromise<BackupResponse, ResponseError>`
+- **Signature**: `adjustSiteSBackupReserve(request: Energy.AdjustSiteSBackupReserveRequest, options?: RequestOptions): ApiPromise<BackupResponse, ApiError>`
 - **Wire**: `POST /api/1/energy_sites/{energy_site_id}/backup`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `BackupResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Energy.AdjustSiteSBackupReserveRequest` (2):
 
@@ -29,12 +30,13 @@ Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations 
 
 ### adjustSiteSOffGridVehicleChargingReserve
 
-- **Signature**: `adjustSiteSOffGridVehicleChargingReserve(request: Energy.AdjustSiteSOffGridVehicleChargingReserveRequest, options?: RequestOptions): ApiPromise<GenericUpdateResponse, ResponseError>`
+- **Signature**: `adjustSiteSOffGridVehicleChargingReserve(request: Energy.AdjustSiteSOffGridVehicleChargingReserveRequest, options?: RequestOptions): ApiPromise<GenericUpdateResponse, ApiError>`
 - **Wire**: `POST /api/1/energy_sites/{energy_site_id}/off_grid_vehicle_charging_reserve`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `GenericUpdateResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Energy.AdjustSiteSOffGridVehicleChargingReserveRequest` (2):
 
@@ -50,12 +52,13 @@ Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations 
 
 ### allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid
 
-- **Signature**: `allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(request: Energy.AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridRequest, options?: RequestOptions): ApiPromise<GenericUpdateResponse, ResponseError>`
+- **Signature**: `allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(request: Energy.AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridRequest, options?: RequestOptions): ApiPromise<GenericUpdateResponse, ApiError>`
 - **Wire**: `POST /api/1/energy_sites/{energy_site_id}/grid_import_export`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
-- **Request body**: `application/json` — the `body` field, a bare top-level JSON map with no fixed keys
+- **Request body**: `application/json` — the `body` field, a bare top-level JSON map with no fixed keys. **Optional**: omit it and the request carries no body and no `Content-Type` header at all
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `GenericUpdateResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Energy.AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridRequest` (2):
 
@@ -70,12 +73,12 @@ Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations 
 
 ### getBackupOrEnergyHistory
 
-- **Signature**: `getBackupOrEnergyHistory(request: Energy.GetBackupOrEnergyHistoryRequest, options?: RequestOptions): ApiPromise<CalendarHistoryResponse, ResponseError>`
+- **Signature**: `getBackupOrEnergyHistory(request: Energy.GetBackupOrEnergyHistoryRequest, options?: RequestOptions): ApiPromise<CalendarHistoryResponse, ApiError>`
 - **Wire**: `GET /api/1/energy_sites/{energy_site_id}/calendar_history`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `CalendarHistoryResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Energy.GetBackupOrEnergyHistoryRequest` (6):
 
@@ -95,12 +98,12 @@ Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations 
 
 ### getLiveSiteStatus
 
-- **Signature**: `getLiveSiteStatus(request: Energy.GetLiveSiteStatusRequest, options?: RequestOptions): ApiPromise<LiveStatusResponse, ResponseError>`
+- **Signature**: `getLiveSiteStatus(request: Energy.GetLiveSiteStatusRequest, options?: RequestOptions): ApiPromise<LiveStatusResponse, ApiError>`
 - **Wire**: `GET /api/1/energy_sites/{energy_site_id}/live_status`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `LiveStatusResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Energy.GetLiveSiteStatusRequest` (1):
 
@@ -114,12 +117,12 @@ Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations 
 
 ### getSiteInformationAssetsSettingsFeatures
 
-- **Signature**: `getSiteInformationAssetsSettingsFeatures(request: Energy.GetSiteInformationAssetsSettingsFeaturesRequest, options?: RequestOptions): ApiPromise<SiteInfoResponse, ResponseError>`
+- **Signature**: `getSiteInformationAssetsSettingsFeatures(request: Energy.GetSiteInformationAssetsSettingsFeaturesRequest, options?: RequestOptions): ApiPromise<SiteInfoResponse, ApiError>`
 - **Wire**: `GET /api/1/energy_sites/{energy_site_id}/site_info`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `SiteInfoResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Energy.GetSiteInformationAssetsSettingsFeaturesRequest` (1):
 
@@ -133,12 +136,12 @@ Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations 
 
 ### getUserProductsVehiclesEnergySites
 
-- **Signature**: `getUserProductsVehiclesEnergySites(options?: RequestOptions): ApiPromise<ProductsResponse, ResponseError>`
+- **Signature**: `getUserProductsVehiclesEnergySites(options?: RequestOptions): ApiPromise<ProductsResponse, ApiError>`
 - **Wire**: `GET /api/1/products`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ProductsResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 | Type | Schema value | Source |
 | --- | --- | --- |
@@ -146,12 +149,12 @@ Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations 
 
 ### getWallConnectorChargingHistory
 
-- **Signature**: `getWallConnectorChargingHistory(request: Energy.GetWallConnectorChargingHistoryRequest, options?: RequestOptions): ApiPromise<ChargeHistoryResponse, ResponseError>`
+- **Signature**: `getWallConnectorChargingHistory(request: Energy.GetWallConnectorChargingHistoryRequest, options?: RequestOptions): ApiPromise<ChargeHistoryResponse, ApiError>`
 - **Wire**: `GET /api/1/energy_sites/{energy_site_id}/telemetry_history`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: none — no `Content-Type` header is sent
 - **Returns**: `ChargeHistoryResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Energy.GetWallConnectorChargingHistoryRequest` (5):
 
@@ -170,12 +173,13 @@ Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations 
 
 ### setSiteModeAutonomousOrSelfConsumption
 
-- **Signature**: `setSiteModeAutonomousOrSelfConsumption(request: Energy.SetSiteModeAutonomousOrSelfConsumptionRequest, options?: RequestOptions): ApiPromise<GenericUpdateResponse, ResponseError>`
+- **Signature**: `setSiteModeAutonomousOrSelfConsumption(request: Energy.SetSiteModeAutonomousOrSelfConsumptionRequest, options?: RequestOptions): ApiPromise<GenericUpdateResponse, ApiError>`
 - **Wire**: `POST /api/1/energy_sites/{energy_site_id}/operation`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `GenericUpdateResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Energy.SetSiteModeAutonomousOrSelfConsumptionRequest` (2):
 
@@ -191,12 +195,13 @@ Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations 
 
 ### updateStormWatchParticipation
 
-- **Signature**: `updateStormWatchParticipation(request: Energy.UpdateStormWatchParticipationRequest, options?: RequestOptions): ApiPromise<GenericUpdateResponse, ResponseError>`
+- **Signature**: `updateStormWatchParticipation(request: Energy.UpdateStormWatchParticipationRequest, options?: RequestOptions): ApiPromise<GenericUpdateResponse, ApiError>`
 - **Wire**: `POST /api/1/energy_sites/{energy_site_id}/storm_mode`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `GenericUpdateResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Energy.UpdateStormWatchParticipationRequest` (2):
 
@@ -212,12 +217,13 @@ Accessor: `client.energy` · Source: `src/resources/energy.ts` · 11 operations 
 
 ### updateTimeOfUseTouSettings
 
-- **Signature**: `updateTimeOfUseTouSettings(request: Energy.UpdateTimeOfUseTouSettingsRequest, options?: RequestOptions): ApiPromise<GenericUpdateResponse, ResponseError>`
+- **Signature**: `updateTimeOfUseTouSettings(request: Energy.UpdateTimeOfUseTouSettingsRequest, options?: RequestOptions): ApiPromise<GenericUpdateResponse, ApiError>`
 - **Wire**: `POST /api/1/energy_sites/{energy_site_id}/time_of_use_settings`
 - **Auth**: any of `thirdpartytokenAuthorizationCode`, `thirdpartytokenClientCredentials` — the first one configured is sent
 - **Request body**: `application/json` — the `body` field
+- **SDK-sent**: `header Idempotency-Key` (minted per call)
 - **Returns**: `GenericUpdateResponse`
-- **Error**: `ResponseError` — untyped, `payload.kind` always `"undeclared"`
+- **Error**: `TeslaFleetManagementApiError` with `kind: "api"` — untyped, `payload.kind` always `"undeclared"`
 
 **Fields** — `Energy.UpdateTimeOfUseTouSettingsRequest` (2):
 

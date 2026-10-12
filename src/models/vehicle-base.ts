@@ -13,8 +13,8 @@ export type VehicleBase = {
 };
 
 export const vehicleBaseSchema: Schema<VehicleBase> = s.object<VehicleBase>({
-  id: s.optional(s.number()),
-  vehicleId: s.optional(s.number()),
+  id: s.optional(s.int()),
+  vehicleId: s.optional(s.int()),
   vin: s.optional(s.string()),
   displayName: s.optional(s.string()),
   accessType: s.optional(s.string()),

@@ -16,14 +16,14 @@ export type AddChargeScheduleRequest = {
 
 export const addChargeScheduleRequestSchema: Schema<AddChargeScheduleRequest> =
   s.object<AddChargeScheduleRequest>({
-    lat: s.number(),
-    lon: s.number(),
-    id: s.number(),
+    lat: s.float64(),
+    lon: s.float64(),
+    id: s.int(),
     daysOfWeek: s.optional(s.string()),
     startEnabled: s.optional(s.boolean()),
-    startTime: s.optional(s.number()),
+    startTime: s.optional(s.int()),
     endEnabled: s.optional(s.boolean()),
-    endTime: s.optional(s.number()),
+    endTime: s.optional(s.int()),
     oneTime: s.optional(s.boolean()),
     enabled: s.boolean(),
     _keysMap: {

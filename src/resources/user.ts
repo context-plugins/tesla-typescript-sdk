@@ -1,15 +1,18 @@
 import type { AuthSchemes } from "../auth-schemes.js";
+import { ApiError } from "../core/api-error.js";
 import type { ApiPromise } from "../core/api-promise.js";
 import type { RequestOptions } from "../core/api-request.js";
 import { anyAuth } from "../core/auth/schemes.js";
 import type { RawClient } from "../core/raw-client.js";
-import { ResponseError } from "../core/response-error.js";
 import { backupResponseSchema, type BackupResponse } from "../models/backup-response.js";
 import { meResponseSchema, type MeResponse } from "../models/me-response.js";
 import { ordersResponseSchema, type OrdersResponse } from "../models/orders-response.js";
 import { regionResponseSchema, type RegionResponse } from "../models/region-response.js";
 import type { Servers } from "../servers.js";
 
+/**
+ * User account and settings endpoints
+ */
 export class User {
   readonly #rawClient: RawClient;
   readonly #servers: Servers;
@@ -21,77 +24,133 @@ export class User {
     this.#auth = auth;
   }
 
-  getActiveOrdersForAUser(options?: RequestOptions): ApiPromise<OrdersResponse, ResponseError> {
-    return this.#rawClient.execute<OrdersResponse, ResponseError>(
+  /**
+   * getActiveOrdersForAUser
+   *
+   * @returns User orders retrieved
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link TeslaFleetManagementApiError} when no usable response was produced: a connection
+   * failure, a timeout, a body that would not decode, a value that would not encode, or a
+   * credential that could not be obtained
+   */
+  getActiveOrdersForAUser(options?: RequestOptions): ApiPromise<OrdersResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/api/1/users/orders"),
+        urlTemplate: this.#servers.default("/api/1/users/orders"),
         auth: anyAuth(
           this.#auth.thirdpartytokenAuthorizationCode,
           this.#auth.thirdpartytokenClientCredentials,
         ),
+        pathParams: [],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: ordersResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  getCustomFeatureFlagsForAUser(options?: RequestOptions): ApiPromise<BackupResponse, ResponseError> {
-    return this.#rawClient.execute<BackupResponse, ResponseError>(
+  /**
+   * getCustomFeatureFlagsForAUser
+   *
+   * @returns Feature flags retrieved
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link TeslaFleetManagementApiError} when no usable response was produced: a connection
+   * failure, a timeout, a body that would not decode, a value that would not encode, or a
+   * credential that could not be obtained
+   */
+  getCustomFeatureFlagsForAUser(options?: RequestOptions): ApiPromise<BackupResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/api/1/users/feature_config"),
+        urlTemplate: this.#servers.default("/api/1/users/feature_config"),
         auth: anyAuth(
           this.#auth.thirdpartytokenAuthorizationCode,
           this.#auth.thirdpartytokenClientCredentials,
         ),
+        pathParams: [],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: backupResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  getSummaryOfAUserSAccount(options?: RequestOptions): ApiPromise<MeResponse, ResponseError> {
-    return this.#rawClient.execute<MeResponse, ResponseError>(
+  /**
+   * getSummaryOfAUserSAccount
+   *
+   * @returns User account retrieved
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link TeslaFleetManagementApiError} when no usable response was produced: a connection
+   * failure, a timeout, a body that would not decode, a value that would not encode, or a
+   * credential that could not be obtained
+   */
+  getSummaryOfAUserSAccount(options?: RequestOptions): ApiPromise<MeResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/api/1/users/me"),
+        urlTemplate: this.#servers.default("/api/1/users/me"),
         auth: anyAuth(
           this.#auth.thirdpartytokenAuthorizationCode,
           this.#auth.thirdpartytokenClientCredentials,
         ),
+        pathParams: [],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: meResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );
   }
 
-  getUserSRegionAndFleetApiBaseUrl(options?: RequestOptions): ApiPromise<RegionResponse, ResponseError> {
-    return this.#rawClient.execute<RegionResponse, ResponseError>(
+  /**
+   * getUserSRegionAndFleetApiBaseUrl
+   *
+   * @returns Region information retrieved
+   *
+   * @throws {@link ApiError} when the API answers with an error status
+   *
+   * @throws {@link TeslaFleetManagementApiError} when no usable response was produced: a connection
+   * failure, a timeout, a body that would not decode, a value that would not encode, or a
+   * credential that could not be obtained
+   */
+  getUserSRegionAndFleetApiBaseUrl(options?: RequestOptions): ApiPromise<RegionResponse, ApiError> {
+    return this.#rawClient.execute(
       {
         method: "GET",
-        url: this.#servers.default("/api/1/users/region"),
+        urlTemplate: this.#servers.default("/api/1/users/region"),
         auth: anyAuth(
           this.#auth.thirdpartytokenAuthorizationCode,
           this.#auth.thirdpartytokenClientCredentials,
         ),
+        pathParams: [],
+        query: [],
+        headers: [],
         body: { kind: "empty" },
       },
       {
         success: { kind: "json", schema: regionResponseSchema },
-        errorFactory: ResponseError,
+        errorFactory: ApiError,
       },
       options,
     );

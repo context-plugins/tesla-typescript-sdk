@@ -7,7 +7,7 @@ export type OffGridVehicleChargingReserveRequest = {
 
 export const offGridVehicleChargingReserveRequestSchema: Schema<OffGridVehicleChargingReserveRequest> =
   s.object<OffGridVehicleChargingReserveRequest>({
-    offGridVehicleChargingReservePercent: s.number(),
+    offGridVehicleChargingReservePercent: s.int(),
     _keysMap: {
       offGridVehicleChargingReservePercent: "off_grid_vehicle_charging_reserve_percent",
     },

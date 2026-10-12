@@ -13,11 +13,11 @@ export type AddPreconditionScheduleRequest = {
 
 export const addPreconditionScheduleRequestSchema: Schema<AddPreconditionScheduleRequest> =
   s.object<AddPreconditionScheduleRequest>({
-    lat: s.number(),
-    lon: s.number(),
-    id: s.number(),
+    lat: s.float64(),
+    lon: s.float64(),
+    id: s.int(),
     daysOfWeek: s.optional(s.string()),
-    preconditionTime: s.optional(s.number()),
+    preconditionTime: s.optional(s.int()),
     oneTime: s.optional(s.boolean()),
     enabled: s.boolean(),
     _keysMap: {

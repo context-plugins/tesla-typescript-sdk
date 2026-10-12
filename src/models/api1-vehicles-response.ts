@@ -12,5 +12,5 @@ export type Api1VehiclesResponse = {
 export const api1VehiclesResponseSchema: Schema<Api1VehiclesResponse> = s.object<Api1VehiclesResponse>({
   response: s.optional(s.array(s.lazy(() => vehicleBaseSchema))),
   pagination: s.optional(s.lazy(() => paginationSchema)),
-  count: s.optional(s.number()),
+  count: s.optional(s.int()),
 });

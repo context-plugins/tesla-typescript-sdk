@@ -8,5 +8,5 @@ export type ChargingDimension = {
 
 export const chargingDimensionSchema: Schema<ChargingDimension> = s.object<ChargingDimension>({
   type: s.optional(s.string()),
-  volume: s.optional(s.number()),
+  volume: s.optional(s.float64()),
 });

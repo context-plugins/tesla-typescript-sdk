@@ -8,9 +8,9 @@ export type TotalCost = {
 };
 
 export const totalCostSchema: Schema<TotalCost> = s.object<TotalCost>({
-  exclVat: s.optional(s.number()),
-  inclVat: s.optional(s.number()),
-  vat: s.optional(s.number()),
+  exclVat: s.optional(s.float64()),
+  inclVat: s.optional(s.float64()),
+  vat: s.optional(s.float64()),
   _keysMap: {
     exclVat: "excl_vat",
     inclVat: "incl_vat",

@@ -11,12 +11,12 @@ export type Pagination = {
 };
 
 export const paginationSchema: Schema<Pagination> = s.object<Pagination>({
-  previous: s.optionalNullable(s.number()),
-  next: s.optionalNullable(s.number()),
-  current: s.optional(s.number()),
-  perPage: s.optional(s.number()),
-  count: s.optional(s.number()),
-  pages: s.optional(s.number()),
+  previous: s.optionalNullable(s.int()),
+  next: s.optionalNullable(s.int()),
+  current: s.optional(s.int()),
+  perPage: s.optional(s.int()),
+  count: s.optional(s.int()),
+  pages: s.optional(s.int()),
   _keysMap: {
     perPage: "per_page",
   },

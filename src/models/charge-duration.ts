@@ -6,5 +6,5 @@ export type ChargeDuration = {
 };
 
 export const chargeDurationSchema: Schema<ChargeDuration> = s.object<ChargeDuration>({
-  seconds: s.number(),
+  seconds: s.int(),
 });

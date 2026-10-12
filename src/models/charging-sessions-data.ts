@@ -11,7 +11,7 @@ export type ChargingSessionsData = {
 
 export const chargingSessionsDataSchema: Schema<ChargingSessionsData> = s.object<ChargingSessionsData>({
   data: s.optional(s.array(s.lazy(() => chargingSessionSchema))),
-  statusCode: s.optional(s.number()),
+  statusCode: s.optional(s.int()),
   statusMessage: s.optional(s.string()),
   timestamp: s.optional(s.record(s.string(), s.string())),
   _keysMap: {

@@ -17,10 +17,10 @@ export type ChargingLocation = {
 export const chargingLocationSchema: Schema<ChargingLocation> = s.object<ChargingLocation>({
   name: s.optional(s.string()),
   type: s.optional(s.string()),
-  distanceMiles: s.optional(s.number()),
+  distanceMiles: s.optional(s.float64()),
   amenities: s.optional(s.string()),
-  availableStalls: s.optional(s.number()),
-  totalStalls: s.optional(s.number()),
+  availableStalls: s.optional(s.int()),
+  totalStalls: s.optional(s.int()),
   siteClosed: s.optional(s.boolean()),
   billingInfo: s.optional(s.string()),
   location: s.optional(s.lazy(() => location1Schema)),

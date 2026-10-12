@@ -6,7 +6,7 @@ export type BackupRequest = {
 };
 
 export const backupRequestSchema: Schema<BackupRequest> = s.object<BackupRequest>({
-  backupReservePercent: s.number(),
+  backupReservePercent: s.int(),
   _keysMap: {
     backupReservePercent: "backup_reserve_percent",
   },

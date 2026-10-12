@@ -11,7 +11,7 @@ export type Response3 = {
 export const response3Schema: Schema<Response3> = s.object<Response3>({
   destinationCharging: s.optional(s.array(s.lazy(() => chargingLocationSchema))),
   superchargers: s.optional(s.array(s.lazy(() => chargingLocationSchema))),
-  timestamp: s.optional(s.number()),
+  timestamp: s.optional(s.int()),
   _keysMap: {
     destinationCharging: "destination_charging",
   },

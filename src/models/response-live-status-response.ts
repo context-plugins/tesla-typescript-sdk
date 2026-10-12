@@ -18,15 +18,15 @@ export type ResponseLiveStatusResponse = {
 
 export const responseLiveStatusResponseSchema: Schema<ResponseLiveStatusResponse> =
   s.object<ResponseLiveStatusResponse>({
-    solarPower: s.number(),
-    energyLeft: s.number(),
-    totalPackEnergy: s.number(),
-    percentageCharged: s.number(),
+    solarPower: s.float64(),
+    energyLeft: s.float64(),
+    totalPackEnergy: s.float64(),
+    percentageCharged: s.float64(),
     backupCapable: s.boolean(),
-    batteryPower: s.optional(s.number()),
-    loadPower: s.optional(s.number()),
+    batteryPower: s.optional(s.float64()),
+    loadPower: s.optional(s.float64()),
     gridStatus: s.optional(s.string()),
-    gridPower: s.optional(s.number()),
+    gridPower: s.optional(s.float64()),
     islandStatus: s.optional(s.string()),
     stormModeActive: s.optional(s.boolean()),
     timestamp: s.optional(s.dateTime()),

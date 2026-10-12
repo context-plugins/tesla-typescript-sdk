@@ -7,7 +7,7 @@
 > Source: [Charging](src/resources/charging.ts)
 
 <details>
-<summary><code>getChargingHistory(options?: RequestOptions): ApiPromise&lt;ChargingHistoryResponse, ResponseError&gt;</code></summary>
+<summary><code>getChargingHistory(options?: RequestOptions): ApiPromise&lt;ChargingHistoryResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
@@ -22,7 +22,7 @@ Returns the paginated charging history for the authenticated account.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -32,7 +32,25 @@ try {
   const response = await client.charging.getChargingHistory();
   // TODO: Handle 'response' of type ChargingHistoryResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.charging.getChargingHistory().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChargingHistoryResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -44,9 +62,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChargingHistoryResponse](src/models/charging-history-response.ts)</code>
+**Direct**: `await client.charging.getChargingHistory()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[ChargingHistoryResponse](src/models/charging-history-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.charging.getChargingHistory().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChargingHistoryResponse, ApiError&gt;</code>, with `result.value` of type <code>[ChargingHistoryResponse](src/models/charging-history-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -57,7 +83,7 @@ try {
 </details>
 
 <details>
-<summary><code>getChargingInvoice(request: Charging.GetChargingInvoiceRequest, options?: RequestOptions): ApiPromise&lt;undefined, ResponseError&gt;</code></summary>
+<summary><code>getChargingInvoice(request: Charging.GetChargingInvoiceRequest, options?: RequestOptions): ApiPromise&lt;undefined, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
@@ -72,16 +98,34 @@ Returns a charging invoice PDF for a charging session.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  await client.charging.getChargingInvoice({ id });
+  await client.charging.getChargingInvoice({ id: "some example string" });
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.charging.getChargingInvoice({ id: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: The call succeeded and resolves to no body
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -105,9 +149,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>undefined</code>
+**Direct**: `await client.charging.getChargingInvoice(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>undefined</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.charging.getChargingInvoice(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;undefined, ApiError&gt;</code>, with `result.value` of type <code>undefined</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -118,7 +170,7 @@ try {
 </details>
 
 <details>
-<summary><code>getChargingSessions(options?: RequestOptions): ApiPromise&lt;ChargingSessionsResponse, ResponseError&gt;</code></summary>
+<summary><code>getChargingSessions(options?: RequestOptions): ApiPromise&lt;ChargingSessionsResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
@@ -133,7 +185,7 @@ Returns charging session information. Only available for business fleet owners.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -143,7 +195,25 @@ try {
   const response = await client.charging.getChargingSessions();
   // TODO: Handle 'response' of type ChargingSessionsResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.charging.getChargingSessions().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChargingSessionsResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -155,9 +225,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChargingSessionsResponse](src/models/charging-sessions-response.ts)</code>
+**Direct**: `await client.charging.getChargingSessions()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[ChargingSessionsResponse](src/models/charging-sessions-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.charging.getChargingSessions().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChargingSessionsResponse, ApiError&gt;</code>, with `result.value` of type <code>[ChargingSessionsResponse](src/models/charging-sessions-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -172,22 +250,46 @@ try {
 > Source: [Energy](src/resources/energy.ts)
 
 <details>
-<summary><code>adjustSiteSBackupReserve(request: Energy.AdjustSiteSBackupReserveRequest, options?: RequestOptions): ApiPromise&lt;BackupResponse, ResponseError&gt;</code></summary>
+<summary><code>adjustSiteSBackupReserve(request: Energy.AdjustSiteSBackupReserveRequest, options?: RequestOptions): ApiPromise&lt;BackupResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.energy.adjustSiteSBackupReserve({ energySiteId, body });
+  const response = await client.energy.adjustSiteSBackupReserve({
+    energySiteId: "some example string",
+    body: { backupReservePercent: 1 },
+  });
   // TODO: Handle 'response' of type BackupResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.adjustSiteSBackupReserve({
+  energySiteId: "some example string",
+  body: { backupReservePercent: 1 },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type BackupResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -212,9 +314,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[BackupResponse](src/models/backup-response.ts)</code>
+**Direct**: `await client.energy.adjustSiteSBackupReserve(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[BackupResponse](src/models/backup-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.adjustSiteSBackupReserve(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;BackupResponse, ApiError&gt;</code>, with `result.value` of type <code>[BackupResponse](src/models/backup-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -225,22 +335,46 @@ try {
 </details>
 
 <details>
-<summary><code>adjustSiteSOffGridVehicleChargingReserve(request: Energy.AdjustSiteSOffGridVehicleChargingReserveRequest, options?: RequestOptions): ApiPromise&lt;GenericUpdateResponse, ResponseError&gt;</code></summary>
+<summary><code>adjustSiteSOffGridVehicleChargingReserve(request: Energy.AdjustSiteSOffGridVehicleChargingReserveRequest, options?: RequestOptions): ApiPromise&lt;GenericUpdateResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.energy.adjustSiteSOffGridVehicleChargingReserve({ energySiteId, body });
+  const response = await client.energy.adjustSiteSOffGridVehicleChargingReserve({
+    energySiteId: "some example string",
+    body: { offGridVehicleChargingReservePercent: 1 },
+  });
   // TODO: Handle 'response' of type GenericUpdateResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.adjustSiteSOffGridVehicleChargingReserve({
+  energySiteId: "some example string",
+  body: { offGridVehicleChargingReservePercent: 1 },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type GenericUpdateResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -265,9 +399,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+**Direct**: `await client.energy.adjustSiteSOffGridVehicleChargingReserve(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.adjustSiteSOffGridVehicleChargingReserve(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;GenericUpdateResponse, ApiError&gt;</code>, with `result.value` of type <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -278,12 +420,12 @@ try {
 </details>
 
 <details>
-<summary><code>allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(request: Energy.AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridRequest, options?: RequestOptions): ApiPromise&lt;GenericUpdateResponse, ResponseError&gt;</code></summary>
+<summary><code>allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(request: Energy.AllowDisallowChargingFromTheGridAndExportingEnergyToTheGridRequest, options?: RequestOptions): ApiPromise&lt;GenericUpdateResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -291,11 +433,31 @@ try {
 ```ts
 try {
   const response = await client.energy.allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid({
-    energySiteId,
+    energySiteId: "some example string",
   });
   // TODO: Handle 'response' of type GenericUpdateResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid({
+  energySiteId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type GenericUpdateResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -320,9 +482,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+**Direct**: `await client.energy.allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;GenericUpdateResponse, ApiError&gt;</code>, with `result.value` of type <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -333,22 +503,50 @@ try {
 </details>
 
 <details>
-<summary><code>getBackupOrEnergyHistory(request: Energy.GetBackupOrEnergyHistoryRequest, options?: RequestOptions): ApiPromise&lt;CalendarHistoryResponse, ResponseError&gt;</code></summary>
+<summary><code>getBackupOrEnergyHistory(request: Energy.GetBackupOrEnergyHistoryRequest, options?: RequestOptions): ApiPromise&lt;CalendarHistoryResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.energy.getBackupOrEnergyHistory({ energySiteId, kind, startDate, endDate });
+  const response = await client.energy.getBackupOrEnergyHistory({
+    energySiteId: "some example string",
+    kind: Kind.Backup,
+    startDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+    endDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+  });
   // TODO: Handle 'response' of type CalendarHistoryResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.getBackupOrEnergyHistory({
+  energySiteId: "some example string",
+  kind: Kind.Backup,
+  startDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+  endDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CalendarHistoryResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -377,9 +575,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CalendarHistoryResponse](src/models/calendar-history-response.ts)</code>
+**Direct**: `await client.energy.getBackupOrEnergyHistory(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CalendarHistoryResponse](src/models/calendar-history-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.getBackupOrEnergyHistory(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CalendarHistoryResponse, ApiError&gt;</code>, with `result.value` of type <code>[CalendarHistoryResponse](src/models/calendar-history-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -390,22 +596,40 @@ try {
 </details>
 
 <details>
-<summary><code>getLiveSiteStatus(request: Energy.GetLiveSiteStatusRequest, options?: RequestOptions): ApiPromise&lt;LiveStatusResponse, ResponseError&gt;</code></summary>
+<summary><code>getLiveSiteStatus(request: Energy.GetLiveSiteStatusRequest, options?: RequestOptions): ApiPromise&lt;LiveStatusResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.energy.getLiveSiteStatus({ energySiteId });
+  const response = await client.energy.getLiveSiteStatus({ energySiteId: "some example string" });
   // TODO: Handle 'response' of type LiveStatusResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.getLiveSiteStatus({ energySiteId: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type LiveStatusResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -429,9 +653,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[LiveStatusResponse](src/models/live-status-response.ts)</code>
+**Direct**: `await client.energy.getLiveSiteStatus(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[LiveStatusResponse](src/models/live-status-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.getLiveSiteStatus(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;LiveStatusResponse, ApiError&gt;</code>, with `result.value` of type <code>[LiveStatusResponse](src/models/live-status-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -442,22 +674,44 @@ try {
 </details>
 
 <details>
-<summary><code>getSiteInformationAssetsSettingsFeatures(request: Energy.GetSiteInformationAssetsSettingsFeaturesRequest, options?: RequestOptions): ApiPromise&lt;SiteInfoResponse, ResponseError&gt;</code></summary>
+<summary><code>getSiteInformationAssetsSettingsFeatures(request: Energy.GetSiteInformationAssetsSettingsFeaturesRequest, options?: RequestOptions): ApiPromise&lt;SiteInfoResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.energy.getSiteInformationAssetsSettingsFeatures({ energySiteId });
+  const response = await client.energy.getSiteInformationAssetsSettingsFeatures({
+    energySiteId: "some example string",
+  });
   // TODO: Handle 'response' of type SiteInfoResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.getSiteInformationAssetsSettingsFeatures({
+  energySiteId: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type SiteInfoResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -481,9 +735,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+**Direct**: `await client.energy.getSiteInformationAssetsSettingsFeatures(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.getSiteInformationAssetsSettingsFeatures(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;SiteInfoResponse, ApiError&gt;</code>, with `result.value` of type <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -494,12 +756,12 @@ try {
 </details>
 
 <details>
-<summary><code>getUserProductsVehiclesEnergySites(options?: RequestOptions): ApiPromise&lt;ProductsResponse, ResponseError&gt;</code></summary>
+<summary><code>getUserProductsVehiclesEnergySites(options?: RequestOptions): ApiPromise&lt;ProductsResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -509,7 +771,25 @@ try {
   const response = await client.energy.getUserProductsVehiclesEnergySites();
   // TODO: Handle 'response' of type ProductsResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.getUserProductsVehiclesEnergySites().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ProductsResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -521,9 +801,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ProductsResponse](src/models/products-response.ts)</code>
+**Direct**: `await client.energy.getUserProductsVehiclesEnergySites()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[ProductsResponse](src/models/products-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.getUserProductsVehiclesEnergySites().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ProductsResponse, ApiError&gt;</code>, with `result.value` of type <code>[ProductsResponse](src/models/products-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -534,12 +822,12 @@ try {
 </details>
 
 <details>
-<summary><code>getWallConnectorChargingHistory(request: Energy.GetWallConnectorChargingHistoryRequest, options?: RequestOptions): ApiPromise&lt;ChargeHistoryResponse, ResponseError&gt;</code></summary>
+<summary><code>getWallConnectorChargingHistory(request: Energy.GetWallConnectorChargingHistoryRequest, options?: RequestOptions): ApiPromise&lt;ChargeHistoryResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -547,14 +835,37 @@ try {
 ```ts
 try {
   const response = await client.energy.getWallConnectorChargingHistory({
-    energySiteId,
-    kind,
-    startDate,
-    endDate,
+    energySiteId: "some example string",
+    kind: KindGetWallConnectorChargingHistory.Charge,
+    startDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+    endDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
   });
   // TODO: Handle 'response' of type ChargeHistoryResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.getWallConnectorChargingHistory({
+  energySiteId: "some example string",
+  kind: KindGetWallConnectorChargingHistory.Charge,
+  startDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+  endDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type ChargeHistoryResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -582,9 +893,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[ChargeHistoryResponse](src/models/charge-history-response.ts)</code>
+**Direct**: `await client.energy.getWallConnectorChargingHistory(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[ChargeHistoryResponse](src/models/charge-history-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.getWallConnectorChargingHistory(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;ChargeHistoryResponse, ApiError&gt;</code>, with `result.value` of type <code>[ChargeHistoryResponse](src/models/charge-history-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -595,22 +914,46 @@ try {
 </details>
 
 <details>
-<summary><code>setSiteModeAutonomousOrSelfConsumption(request: Energy.SetSiteModeAutonomousOrSelfConsumptionRequest, options?: RequestOptions): ApiPromise&lt;GenericUpdateResponse, ResponseError&gt;</code></summary>
+<summary><code>setSiteModeAutonomousOrSelfConsumption(request: Energy.SetSiteModeAutonomousOrSelfConsumptionRequest, options?: RequestOptions): ApiPromise&lt;GenericUpdateResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.energy.setSiteModeAutonomousOrSelfConsumption({ energySiteId, body });
+  const response = await client.energy.setSiteModeAutonomousOrSelfConsumption({
+    energySiteId: "some example string",
+    body: { defaultRealMode: DefaultRealMode.Autonomous },
+  });
   // TODO: Handle 'response' of type GenericUpdateResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.setSiteModeAutonomousOrSelfConsumption({
+  energySiteId: "some example string",
+  body: { defaultRealMode: DefaultRealMode.Autonomous },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type GenericUpdateResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -635,9 +978,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+**Direct**: `await client.energy.setSiteModeAutonomousOrSelfConsumption(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.setSiteModeAutonomousOrSelfConsumption(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;GenericUpdateResponse, ApiError&gt;</code>, with `result.value` of type <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -648,22 +999,46 @@ try {
 </details>
 
 <details>
-<summary><code>updateStormWatchParticipation(request: Energy.UpdateStormWatchParticipationRequest, options?: RequestOptions): ApiPromise&lt;GenericUpdateResponse, ResponseError&gt;</code></summary>
+<summary><code>updateStormWatchParticipation(request: Energy.UpdateStormWatchParticipationRequest, options?: RequestOptions): ApiPromise&lt;GenericUpdateResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.energy.updateStormWatchParticipation({ energySiteId, body });
+  const response = await client.energy.updateStormWatchParticipation({
+    energySiteId: "some example string",
+    body: { enabled: true },
+  });
   // TODO: Handle 'response' of type GenericUpdateResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.updateStormWatchParticipation({
+  energySiteId: "some example string",
+  body: { enabled: true },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type GenericUpdateResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -688,9 +1063,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+**Direct**: `await client.energy.updateStormWatchParticipation(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.updateStormWatchParticipation(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;GenericUpdateResponse, ApiError&gt;</code>, with `result.value` of type <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -701,22 +1084,46 @@ try {
 </details>
 
 <details>
-<summary><code>updateTimeOfUseTouSettings(request: Energy.UpdateTimeOfUseTouSettingsRequest, options?: RequestOptions): ApiPromise&lt;GenericUpdateResponse, ResponseError&gt;</code></summary>
+<summary><code>updateTimeOfUseTouSettings(request: Energy.UpdateTimeOfUseTouSettingsRequest, options?: RequestOptions): ApiPromise&lt;GenericUpdateResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.energy.updateTimeOfUseTouSettings({ energySiteId, body });
+  const response = await client.energy.updateTimeOfUseTouSettings({
+    energySiteId: "some example string",
+    body: { touSettings: {} },
+  });
   // TODO: Handle 'response' of type GenericUpdateResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.energy.updateTimeOfUseTouSettings({
+  energySiteId: "some example string",
+  body: { touSettings: {} },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type GenericUpdateResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -741,9 +1148,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+**Direct**: `await client.energy.updateTimeOfUseTouSettings(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.energy.updateTimeOfUseTouSettings(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;GenericUpdateResponse, ApiError&gt;</code>, with `result.value` of type <code>[GenericUpdateResponse](src/models/generic-update-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -758,22 +1173,40 @@ try {
 > Source: [Partner](src/resources/partner.ts)
 
 <details>
-<summary><code>getPublicKeyForADomain(request: Partner.GetPublicKeyForADomainRequest, options?: RequestOptions): ApiPromise&lt;PublicKeyResponse, ResponseError&gt;</code></summary>
+<summary><code>getPublicKeyForADomain(request: Partner.GetPublicKeyForADomainRequest, options?: RequestOptions): ApiPromise&lt;PublicKeyResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.partner.getPublicKeyForADomain({ domain });
+  const response = await client.partner.getPublicKeyForADomain({ domain: "some example string" });
   // TODO: Handle 'response' of type PublicKeyResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.partner.getPublicKeyForADomain({ domain: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type PublicKeyResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -797,9 +1230,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[PublicKeyResponse](src/models/public-key-response.ts)</code>
+**Direct**: `await client.partner.getPublicKeyForADomain(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[PublicKeyResponse](src/models/public-key-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.partner.getPublicKeyForADomain(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;PublicKeyResponse, ApiError&gt;</code>, with `result.value` of type <code>[PublicKeyResponse](src/models/public-key-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -810,12 +1251,12 @@ try {
 </details>
 
 <details>
-<summary><code>getRecentFleetTelemetryErrors(options?: RequestOptions): ApiPromise&lt;FleetTelemetryErrorsResponse, ResponseError&gt;</code></summary>
+<summary><code>getRecentFleetTelemetryErrors(options?: RequestOptions): ApiPromise&lt;FleetTelemetryErrorsResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -825,7 +1266,25 @@ try {
   const response = await client.partner.getRecentFleetTelemetryErrors();
   // TODO: Handle 'response' of type FleetTelemetryErrorsResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.partner.getRecentFleetTelemetryErrors().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type FleetTelemetryErrorsResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -837,9 +1296,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[FleetTelemetryErrorsResponse](src/models/fleet-telemetry-errors-response.ts)</code>
+**Direct**: `await client.partner.getRecentFleetTelemetryErrors()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[FleetTelemetryErrorsResponse](src/models/fleet-telemetry-errors-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.partner.getRecentFleetTelemetryErrors().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;FleetTelemetryErrorsResponse, ApiError&gt;</code>, with `result.value` of type <code>[FleetTelemetryErrorsResponse](src/models/fleet-telemetry-errors-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -850,12 +1317,12 @@ try {
 </details>
 
 <details>
-<summary><code>getVinsWithFleetTelemetryErrors(options?: RequestOptions): ApiPromise&lt;BackupResponse, ResponseError&gt;</code></summary>
+<summary><code>getVinsWithFleetTelemetryErrors(options?: RequestOptions): ApiPromise&lt;BackupResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -865,7 +1332,25 @@ try {
   const response = await client.partner.getVinsWithFleetTelemetryErrors();
   // TODO: Handle 'response' of type BackupResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.partner.getVinsWithFleetTelemetryErrors().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type BackupResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -877,9 +1362,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[BackupResponse](src/models/backup-response.ts)</code>
+**Direct**: `await client.partner.getVinsWithFleetTelemetryErrors()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[BackupResponse](src/models/backup-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.partner.getVinsWithFleetTelemetryErrors().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;BackupResponse, ApiError&gt;</code>, with `result.value` of type <code>[BackupResponse](src/models/backup-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -890,22 +1383,42 @@ try {
 </details>
 
 <details>
-<summary><code>registerAPartnerAccount(request: Partner.RegisterAPartnerAccountRequest, options?: RequestOptions): ApiPromise&lt;RegisterPartnerResponse, ResponseError&gt;</code></summary>
+<summary><code>registerAPartnerAccount(request: Partner.RegisterAPartnerAccountRequest, options?: RequestOptions): ApiPromise&lt;RegisterPartnerResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.partner.registerAPartnerAccount({ body });
+  const response = await client.partner.registerAPartnerAccount({ body: { domain: "some example string" } });
   // TODO: Handle 'response' of type RegisterPartnerResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.partner.registerAPartnerAccount({
+  body: { domain: "some example string" },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type RegisterPartnerResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -929,9 +1442,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[RegisterPartnerResponse](src/models/register-partner-response.ts)</code>
+**Direct**: `await client.partner.registerAPartnerAccount(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[RegisterPartnerResponse](src/models/register-partner-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.partner.registerAPartnerAccount(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;RegisterPartnerResponse, ApiError&gt;</code>, with `result.value` of type <code>[RegisterPartnerResponse](src/models/register-partner-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -946,12 +1467,12 @@ try {
 > Source: [User](src/resources/user.ts)
 
 <details>
-<summary><code>getActiveOrdersForAUser(options?: RequestOptions): ApiPromise&lt;OrdersResponse, ResponseError&gt;</code></summary>
+<summary><code>getActiveOrdersForAUser(options?: RequestOptions): ApiPromise&lt;OrdersResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -961,7 +1482,25 @@ try {
   const response = await client.user.getActiveOrdersForAUser();
   // TODO: Handle 'response' of type OrdersResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.user.getActiveOrdersForAUser().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type OrdersResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -973,9 +1512,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[OrdersResponse](src/models/orders-response.ts)</code>
+**Direct**: `await client.user.getActiveOrdersForAUser()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[OrdersResponse](src/models/orders-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.user.getActiveOrdersForAUser().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;OrdersResponse, ApiError&gt;</code>, with `result.value` of type <code>[OrdersResponse](src/models/orders-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -986,12 +1533,12 @@ try {
 </details>
 
 <details>
-<summary><code>getCustomFeatureFlagsForAUser(options?: RequestOptions): ApiPromise&lt;BackupResponse, ResponseError&gt;</code></summary>
+<summary><code>getCustomFeatureFlagsForAUser(options?: RequestOptions): ApiPromise&lt;BackupResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -1001,7 +1548,25 @@ try {
   const response = await client.user.getCustomFeatureFlagsForAUser();
   // TODO: Handle 'response' of type BackupResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.user.getCustomFeatureFlagsForAUser().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type BackupResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1013,9 +1578,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[BackupResponse](src/models/backup-response.ts)</code>
+**Direct**: `await client.user.getCustomFeatureFlagsForAUser()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[BackupResponse](src/models/backup-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.user.getCustomFeatureFlagsForAUser().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;BackupResponse, ApiError&gt;</code>, with `result.value` of type <code>[BackupResponse](src/models/backup-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1026,12 +1599,12 @@ try {
 </details>
 
 <details>
-<summary><code>getSummaryOfAUserSAccount(options?: RequestOptions): ApiPromise&lt;MeResponse, ResponseError&gt;</code></summary>
+<summary><code>getSummaryOfAUserSAccount(options?: RequestOptions): ApiPromise&lt;MeResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -1041,7 +1614,25 @@ try {
   const response = await client.user.getSummaryOfAUserSAccount();
   // TODO: Handle 'response' of type MeResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.user.getSummaryOfAUserSAccount().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type MeResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1053,9 +1644,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[MeResponse](src/models/me-response.ts)</code>
+**Direct**: `await client.user.getSummaryOfAUserSAccount()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[MeResponse](src/models/me-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.user.getSummaryOfAUserSAccount().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;MeResponse, ApiError&gt;</code>, with `result.value` of type <code>[MeResponse](src/models/me-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1066,12 +1665,12 @@ try {
 </details>
 
 <details>
-<summary><code>getUserSRegionAndFleetApiBaseUrl(options?: RequestOptions): ApiPromise&lt;RegionResponse, ResponseError&gt;</code></summary>
+<summary><code>getUserSRegionAndFleetApiBaseUrl(options?: RequestOptions): ApiPromise&lt;RegionResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -1081,7 +1680,25 @@ try {
   const response = await client.user.getUserSRegionAndFleetApiBaseUrl();
   // TODO: Handle 'response' of type RegionResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.user.getUserSRegionAndFleetApiBaseUrl().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type RegionResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1093,9 +1710,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[RegionResponse](src/models/region-response.ts)</code>
+**Direct**: `await client.user.getUserSRegionAndFleetApiBaseUrl()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[RegionResponse](src/models/region-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.user.getUserSRegionAndFleetApiBaseUrl().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;RegionResponse, ApiError&gt;</code>, with `result.value` of type <code>[RegionResponse](src/models/region-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1110,22 +1735,40 @@ try {
 > Source: [Vehicles](src/resources/vehicles.ts)
 
 <details>
-<summary><code>configureFleetTelemetryUsingSignedJwsToken(request: Vehicles.ConfigureFleetTelemetryUsingSignedJwsTokenRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ResponseError&gt;</code></summary>
+<summary><code>configureFleetTelemetryUsingSignedJwsToken(request: Vehicles.ConfigureFleetTelemetryUsingSignedJwsTokenRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.configureFleetTelemetryUsingSignedJwsToken({ body });
+  const response = await client.vehicles.configureFleetTelemetryUsingSignedJwsToken({ body: {} });
   // TODO: Handle 'response' of type Record<string, unknown>
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.configureFleetTelemetryUsingSignedJwsToken({ body: {} }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Record<string, unknown>
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1149,9 +1792,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+**Direct**: `await client.vehicles.configureFleetTelemetryUsingSignedJwsToken(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.configureFleetTelemetryUsingSignedJwsToken(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code>, with `result.value` of type <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1162,22 +1813,40 @@ try {
 </details>
 
 <details>
-<summary><code>createOrUpdateFleetTelemetryConfiguration(request: Vehicles.CreateOrUpdateFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ResponseError&gt;</code></summary>
+<summary><code>createOrUpdateFleetTelemetryConfiguration(request: Vehicles.CreateOrUpdateFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.createOrUpdateFleetTelemetryConfiguration({ body });
+  const response = await client.vehicles.createOrUpdateFleetTelemetryConfiguration({ body: {} });
   // TODO: Handle 'response' of type Record<string, unknown>
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.createOrUpdateFleetTelemetryConfiguration({ body: {} }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Record<string, unknown>
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1201,9 +1870,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+**Direct**: `await client.vehicles.createOrUpdateFleetTelemetryConfiguration(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.createOrUpdateFleetTelemetryConfiguration(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code>, with `result.value` of type <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1214,22 +1891,44 @@ try {
 </details>
 
 <details>
-<summary><code>deleteFleetTelemetryConfiguration(request: Vehicles.DeleteFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ResponseError&gt;</code></summary>
+<summary><code>deleteFleetTelemetryConfiguration(request: Vehicles.DeleteFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.deleteFleetTelemetryConfiguration({ vehicleTag });
+  const response = await client.vehicles.deleteFleetTelemetryConfiguration({
+    vehicleTag: "some example string",
+  });
   // TODO: Handle 'response' of type Record<string, unknown>
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.deleteFleetTelemetryConfiguration({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Record<string, unknown>
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1253,9 +1952,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+**Direct**: `await client.vehicles.deleteFleetTelemetryConfiguration(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.deleteFleetTelemetryConfiguration(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code>, with `result.value` of type <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1266,22 +1973,42 @@ try {
 </details>
 
 <details>
-<summary><code>getAllowedDriversForAVehicle(request: Vehicles.GetAllowedDriversForAVehicleRequest, options?: RequestOptions): ApiPromise&lt;DriversResponse, ResponseError&gt;</code></summary>
+<summary><code>getAllowedDriversForAVehicle(request: Vehicles.GetAllowedDriversForAVehicleRequest, options?: RequestOptions): ApiPromise&lt;DriversResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.getAllowedDriversForAVehicle({ vehicleTag });
+  const response = await client.vehicles.getAllowedDriversForAVehicle({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type DriversResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.getAllowedDriversForAVehicle({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type DriversResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1305,9 +2032,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[DriversResponse](src/models/drivers-response.ts)</code>
+**Direct**: `await client.vehicles.getAllowedDriversForAVehicle(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[DriversResponse](src/models/drivers-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.getAllowedDriversForAVehicle(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;DriversResponse, ApiError&gt;</code>, with `result.value` of type <code>[DriversResponse](src/models/drivers-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1318,22 +2053,42 @@ try {
 </details>
 
 <details>
-<summary><code>getEligibleVehicleSubscriptions(request: Vehicles.GetEligibleVehicleSubscriptionsRequest, options?: RequestOptions): ApiPromise&lt;SiteInfoResponse, ResponseError&gt;</code></summary>
+<summary><code>getEligibleVehicleSubscriptions(request: Vehicles.GetEligibleVehicleSubscriptionsRequest, options?: RequestOptions): ApiPromise&lt;SiteInfoResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.getEligibleVehicleSubscriptions({ vin });
+  const response = await client.vehicles.getEligibleVehicleSubscriptions({ vin: "some example string" });
   // TODO: Handle 'response' of type SiteInfoResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.getEligibleVehicleSubscriptions({
+  vin: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type SiteInfoResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1357,9 +2112,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+**Direct**: `await client.vehicles.getEligibleVehicleSubscriptions(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.getEligibleVehicleSubscriptions(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;SiteInfoResponse, ApiError&gt;</code>, with `result.value` of type <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1370,22 +2133,40 @@ try {
 </details>
 
 <details>
-<summary><code>getEligibleVehicleUpgrades(request: Vehicles.GetEligibleVehicleUpgradesRequest, options?: RequestOptions): ApiPromise&lt;SiteInfoResponse, ResponseError&gt;</code></summary>
+<summary><code>getEligibleVehicleUpgrades(request: Vehicles.GetEligibleVehicleUpgradesRequest, options?: RequestOptions): ApiPromise&lt;SiteInfoResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.getEligibleVehicleUpgrades({ vin });
+  const response = await client.vehicles.getEligibleVehicleUpgrades({ vin: "some example string" });
   // TODO: Handle 'response' of type SiteInfoResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.getEligibleVehicleUpgrades({ vin: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type SiteInfoResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1409,9 +2190,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+**Direct**: `await client.vehicles.getEligibleVehicleUpgrades(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.getEligibleVehicleUpgrades(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;SiteInfoResponse, ApiError&gt;</code>, with `result.value` of type <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1422,22 +2211,42 @@ try {
 </details>
 
 <details>
-<summary><code>getEnterpriseRolesForAVehicle(request: Vehicles.GetEnterpriseRolesForAVehicleRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ResponseError&gt;</code></summary>
+<summary><code>getEnterpriseRolesForAVehicle(request: Vehicles.GetEnterpriseRolesForAVehicleRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.getEnterpriseRolesForAVehicle({ vin });
+  const response = await client.vehicles.getEnterpriseRolesForAVehicle({ vin: "some example string" });
   // TODO: Handle 'response' of type Record<string, unknown>
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.getEnterpriseRolesForAVehicle({
+  vin: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Record<string, unknown>
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1461,9 +2270,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+**Direct**: `await client.vehicles.getEnterpriseRolesForAVehicle(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.getEnterpriseRolesForAVehicle(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code>, with `result.value` of type <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1474,22 +2291,40 @@ try {
 </details>
 
 <details>
-<summary><code>getFleetStatusForVehicles(request: Vehicles.GetFleetStatusForVehiclesRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ResponseError&gt;</code></summary>
+<summary><code>getFleetStatusForVehicles(request: Vehicles.GetFleetStatusForVehiclesRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.getFleetStatusForVehicles({ body });
+  const response = await client.vehicles.getFleetStatusForVehicles({ body: {} });
   // TODO: Handle 'response' of type Record<string, unknown>
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.getFleetStatusForVehicles({ body: {} }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Record<string, unknown>
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1513,9 +2348,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+**Direct**: `await client.vehicles.getFleetStatusForVehicles(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.getFleetStatusForVehicles(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code>, with `result.value` of type <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1526,22 +2369,44 @@ try {
 </details>
 
 <details>
-<summary><code>getFleetTelemetryConfiguration(request: Vehicles.GetFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ResponseError&gt;</code></summary>
+<summary><code>getFleetTelemetryConfiguration(request: Vehicles.GetFleetTelemetryConfigurationRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.getFleetTelemetryConfiguration({ vehicleTag });
+  const response = await client.vehicles.getFleetTelemetryConfiguration({
+    vehicleTag: "some example string",
+  });
   // TODO: Handle 'response' of type Record<string, unknown>
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.getFleetTelemetryConfiguration({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Record<string, unknown>
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1565,9 +2430,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+**Direct**: `await client.vehicles.getFleetTelemetryConfiguration(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.getFleetTelemetryConfiguration(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code>, with `result.value` of type <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1578,22 +2451,44 @@ try {
 </details>
 
 <details>
-<summary><code>getFleetTelemetryErrorsForAVehicle(request: Vehicles.GetFleetTelemetryErrorsForAVehicleRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ResponseError&gt;</code></summary>
+<summary><code>getFleetTelemetryErrorsForAVehicle(request: Vehicles.GetFleetTelemetryErrorsForAVehicleRequest, options?: RequestOptions): ApiPromise&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.getFleetTelemetryErrorsForAVehicle({ vehicleTag });
+  const response = await client.vehicles.getFleetTelemetryErrorsForAVehicle({
+    vehicleTag: "some example string",
+  });
   // TODO: Handle 'response' of type Record<string, unknown>
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.getFleetTelemetryErrorsForAVehicle({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Record<string, unknown>
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1617,9 +2512,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+**Direct**: `await client.vehicles.getFleetTelemetryErrorsForAVehicle(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.getFleetTelemetryErrorsForAVehicle(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Record&lt;string, unknown&gt;, ApiError&gt;</code>, with `result.value` of type <code>Record&lt;string, unknown&gt;</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1630,22 +2533,40 @@ try {
 </details>
 
 <details>
-<summary><code>getVehicle(request: Vehicles.GetVehicleRequest, options?: RequestOptions): ApiPromise&lt;Api1VehiclesResponseResponse200, ResponseError&gt;</code></summary>
+<summary><code>getVehicle(request: Vehicles.GetVehicleRequest, options?: RequestOptions): ApiPromise&lt;Api1VehiclesResponseResponse200, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.getVehicle({ vehicleTag });
+  const response = await client.vehicles.getVehicle({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type Api1VehiclesResponseResponse200
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.getVehicle({ vehicleTag: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Api1VehiclesResponseResponse200
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1669,9 +2590,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Api1VehiclesResponseResponse200](src/models/api1-vehicles-response-response200.ts)</code>
+**Direct**: `await client.vehicles.getVehicle(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[Api1VehiclesResponseResponse200](src/models/api1-vehicles-response-response200.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.getVehicle(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Api1VehiclesResponseResponse200, ApiError&gt;</code>, with `result.value` of type <code>[Api1VehiclesResponseResponse200](src/models/api1-vehicles-response-response200.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1682,12 +2611,12 @@ try {
 </details>
 
 <details>
-<summary><code>listVehicles(options?: RequestOptions): ApiPromise&lt;Api1VehiclesResponse, ResponseError&gt;</code></summary>
+<summary><code>listVehicles(options?: RequestOptions): ApiPromise&lt;Api1VehiclesResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -1697,7 +2626,25 @@ try {
   const response = await client.vehicles.listVehicles();
   // TODO: Handle 'response' of type Api1VehiclesResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.listVehicles().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Api1VehiclesResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1709,9 +2656,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Api1VehiclesResponse](src/models/api1-vehicles-response.ts)</code>
+**Direct**: `await client.vehicles.listVehicles()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[Api1VehiclesResponse](src/models/api1-vehicles-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.listVehicles().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Api1VehiclesResponse, ApiError&gt;</code>, with `result.value` of type <code>[Api1VehiclesResponse](src/models/api1-vehicles-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1722,22 +2677,40 @@ try {
 </details>
 
 <details>
-<summary><code>mobileEnabled(request: Vehicles.MobileEnabledRequest, options?: RequestOptions): ApiPromise&lt;Api1VehiclesMobileEnabledResponse, ResponseError&gt;</code></summary>
+<summary><code>mobileEnabled(request: Vehicles.MobileEnabledRequest, options?: RequestOptions): ApiPromise&lt;Api1VehiclesMobileEnabledResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.mobileEnabled({ vehicleTag });
+  const response = await client.vehicles.mobileEnabled({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type Api1VehiclesMobileEnabledResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.mobileEnabled({ vehicleTag: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Api1VehiclesMobileEnabledResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1761,9 +2734,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Api1VehiclesMobileEnabledResponse](src/models/api1-vehicles-mobile-enabled-response.ts)</code>
+**Direct**: `await client.vehicles.mobileEnabled(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[Api1VehiclesMobileEnabledResponse](src/models/api1-vehicles-mobile-enabled-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.mobileEnabled(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Api1VehiclesMobileEnabledResponse, ApiError&gt;</code>, with `result.value` of type <code>[Api1VehiclesMobileEnabledResponse](src/models/api1-vehicles-mobile-enabled-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1774,22 +2755,40 @@ try {
 </details>
 
 <details>
-<summary><code>nearbyChargingSites(request: Vehicles.NearbyChargingSitesRequest, options?: RequestOptions): ApiPromise&lt;Api1VehiclesNearbyChargingSitesResponse, ResponseError&gt;</code></summary>
+<summary><code>nearbyChargingSites(request: Vehicles.NearbyChargingSitesRequest, options?: RequestOptions): ApiPromise&lt;Api1VehiclesNearbyChargingSitesResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.nearbyChargingSites({ vehicleTag });
+  const response = await client.vehicles.nearbyChargingSites({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type Api1VehiclesNearbyChargingSitesResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.nearbyChargingSites({ vehicleTag: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Api1VehiclesNearbyChargingSitesResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1813,9 +2812,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Api1VehiclesNearbyChargingSitesResponse](src/models/api1-vehicles-nearby-charging-sites-response.ts)</code>
+**Direct**: `await client.vehicles.nearbyChargingSites(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[Api1VehiclesNearbyChargingSitesResponse](src/models/api1-vehicles-nearby-charging-sites-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.nearbyChargingSites(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Api1VehiclesNearbyChargingSitesResponse, ApiError&gt;</code>, with `result.value` of type <code>[Api1VehiclesNearbyChargingSitesResponse](src/models/api1-vehicles-nearby-charging-sites-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1826,22 +2833,44 @@ try {
 </details>
 
 <details>
-<summary><code>removeDriverAccessFromAVehicle(request: Vehicles.RemoveDriverAccessFromAVehicleRequest, options?: RequestOptions): ApiPromise&lt;SimpleOkResponse, ResponseError&gt;</code></summary>
+<summary><code>removeDriverAccessFromAVehicle(request: Vehicles.RemoveDriverAccessFromAVehicleRequest, options?: RequestOptions): ApiPromise&lt;SimpleOkResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.removeDriverAccessFromAVehicle({ vehicleTag });
+  const response = await client.vehicles.removeDriverAccessFromAVehicle({
+    vehicleTag: "some example string",
+  });
   // TODO: Handle 'response' of type SimpleOkResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.removeDriverAccessFromAVehicle({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type SimpleOkResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1865,9 +2894,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SimpleOkResponse](src/models/simple-ok-response.ts)</code>
+**Direct**: `await client.vehicles.removeDriverAccessFromAVehicle(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[SimpleOkResponse](src/models/simple-ok-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.removeDriverAccessFromAVehicle(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;SimpleOkResponse, ApiError&gt;</code>, with `result.value` of type <code>[SimpleOkResponse](src/models/simple-ok-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1878,21 +2915,45 @@ try {
 </details>
 
 <details>
-<summary><code>setEnterprisePayerRoles(request: Vehicles.SetEnterprisePayerRolesRequest, options?: RequestOptions): ApiPromise&lt;undefined, ResponseError&gt;</code></summary>
+<summary><code>setEnterprisePayerRoles(request: Vehicles.SetEnterprisePayerRolesRequest, options?: RequestOptions): ApiPromise&lt;undefined, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  await client.vehicles.setEnterprisePayerRoles({ vin, body });
+  await client.vehicles.setEnterprisePayerRoles({
+    vin: "some example string",
+    body: { role: "some example string" },
+  });
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.setEnterprisePayerRoles({
+  vin: "some example string",
+  body: { role: "some example string" },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: The call succeeded and resolves to no body
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1917,9 +2978,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>undefined</code>
+**Direct**: `await client.vehicles.setEnterprisePayerRoles(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>undefined</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.setEnterprisePayerRoles(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;undefined, ApiError&gt;</code>, with `result.value` of type <code>undefined</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1930,22 +2999,40 @@ try {
 </details>
 
 <details>
-<summary><code>vehicleLiveData(request: Vehicles.VehicleLiveDataRequest, options?: RequestOptions): ApiPromise&lt;SiteInfoResponse, ResponseError&gt;</code></summary>
+<summary><code>vehicleLiveData(request: Vehicles.VehicleLiveDataRequest, options?: RequestOptions): ApiPromise&lt;SiteInfoResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.vehicleLiveData({ vehicleTag });
+  const response = await client.vehicles.vehicleLiveData({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type SiteInfoResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.vehicleLiveData({ vehicleTag: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type SiteInfoResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -1969,9 +3056,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+**Direct**: `await client.vehicles.vehicleLiveData(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.vehicleLiveData(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;SiteInfoResponse, ApiError&gt;</code>, with `result.value` of type <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -1982,22 +3077,40 @@ try {
 </details>
 
 <details>
-<summary><code>vehicleOptions(request: Vehicles.VehicleOptionsRequest, options?: RequestOptions): ApiPromise&lt;Api1DxVehiclesOptionsResponse, ResponseError&gt;</code></summary>
+<summary><code>vehicleOptions(request: Vehicles.VehicleOptionsRequest, options?: RequestOptions): ApiPromise&lt;Api1DxVehiclesOptionsResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.vehicleOptions({ vin });
+  const response = await client.vehicles.vehicleOptions({ vin: "some example string" });
   // TODO: Handle 'response' of type Api1DxVehiclesOptionsResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.vehicleOptions({ vin: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Api1DxVehiclesOptionsResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2021,9 +3134,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Api1DxVehiclesOptionsResponse](src/models/api1-dx-vehicles-options-response.ts)</code>
+**Direct**: `await client.vehicles.vehicleOptions(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[Api1DxVehiclesOptionsResponse](src/models/api1-dx-vehicles-options-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.vehicleOptions(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Api1DxVehiclesOptionsResponse, ApiError&gt;</code>, with `result.value` of type <code>[Api1DxVehiclesOptionsResponse](src/models/api1-dx-vehicles-options-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2034,22 +3155,40 @@ try {
 </details>
 
 <details>
-<summary><code>vehicleSpecs(request: Vehicles.VehicleSpecsRequest, options?: RequestOptions): ApiPromise&lt;SiteInfoResponse, ResponseError&gt;</code></summary>
+<summary><code>vehicleSpecs(request: Vehicles.VehicleSpecsRequest, options?: RequestOptions): ApiPromise&lt;SiteInfoResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.vehicleSpecs({ vin });
+  const response = await client.vehicles.vehicleSpecs({ vin: "some example string" });
   // TODO: Handle 'response' of type SiteInfoResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.vehicleSpecs({ vin: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type SiteInfoResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2073,9 +3212,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+**Direct**: `await client.vehicles.vehicleSpecs(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.vehicleSpecs(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;SiteInfoResponse, ApiError&gt;</code>, with `result.value` of type <code>[SiteInfoResponse](src/models/site-info-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2086,22 +3233,40 @@ try {
 </details>
 
 <details>
-<summary><code>wakeUpVehicle(request: Vehicles.WakeUpVehicleRequest, options?: RequestOptions): ApiPromise&lt;Api1VehiclesWakeUpResponse, ResponseError&gt;</code></summary>
+<summary><code>wakeUpVehicle(request: Vehicles.WakeUpVehicleRequest, options?: RequestOptions): ApiPromise&lt;Api1VehiclesWakeUpResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicles.wakeUpVehicle({ vehicleTag });
+  const response = await client.vehicles.wakeUpVehicle({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type Api1VehiclesWakeUpResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.wakeUpVehicle({ vehicleTag: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Api1VehiclesWakeUpResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2125,9 +3290,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Api1VehiclesWakeUpResponse](src/models/api1-vehicles-wake-up-response.ts)</code>
+**Direct**: `await client.vehicles.wakeUpVehicle(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[Api1VehiclesWakeUpResponse](src/models/api1-vehicles-wake-up-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.wakeUpVehicle(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Api1VehiclesWakeUpResponse, ApiError&gt;</code>, with `result.value` of type <code>[Api1VehiclesWakeUpResponse](src/models/api1-vehicles-wake-up-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2138,12 +3311,12 @@ try {
 </details>
 
 <details>
-<summary><code>warrantyDetails(options?: RequestOptions): ApiPromise&lt;Api1DxWarrantyDetailsResponse, ResponseError&gt;</code></summary>
+<summary><code>warrantyDetails(options?: RequestOptions): ApiPromise&lt;Api1DxWarrantyDetailsResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
@@ -2153,7 +3326,25 @@ try {
   const response = await client.vehicles.warrantyDetails();
   // TODO: Handle 'response' of type Api1DxWarrantyDetailsResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicles.warrantyDetails().asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type Api1DxWarrantyDetailsResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2165,9 +3356,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[Api1DxWarrantyDetailsResponse](src/models/api1-dx-warranty-details-response.ts)</code>
+**Direct**: `await client.vehicles.warrantyDetails()`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[Api1DxWarrantyDetailsResponse](src/models/api1-dx-warranty-details-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicles.warrantyDetails().asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;Api1DxWarrantyDetailsResponse, ApiError&gt;</code>, with `result.value` of type <code>[Api1DxWarrantyDetailsResponse](src/models/api1-dx-warranty-details-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2182,7 +3381,7 @@ try {
 > Source: [VehicleCommands](src/resources/vehicle-commands.ts)
 
 <details>
-<summary><code>actuatetrunk(request: VehicleCommands.ActuatetrunkRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>actuatetrunk(request: VehicleCommands.ActuatetrunkRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
@@ -2197,17 +3396,41 @@ Controls the front or rear trunk
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.actuatetrunk({ vehicleTag, body });
+  const response = await client.vehicleCommands.actuatetrunk({
+    vehicleTag: "some example string",
+    body: { whichTrunk: WhichTrunk.Front },
+  });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.actuatetrunk({
+  vehicleTag: "some example string",
+  body: { whichTrunk: WhichTrunk.Front },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2232,9 +3455,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.actuatetrunk(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.actuatetrunk(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2245,22 +3476,46 @@ try {
 </details>
 
 <details>
-<summary><code>addchargeschedule(request: VehicleCommands.AddchargescheduleRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>addchargeschedule(request: VehicleCommands.AddchargescheduleRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.addchargeschedule({ vehicleTag, body });
+  const response = await client.vehicleCommands.addchargeschedule({
+    vehicleTag: "some example string",
+    body: { lat: 1.5, lon: 1.5, id: 1, enabled: true },
+  });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.addchargeschedule({
+  vehicleTag: "some example string",
+  body: { lat: 1.5, lon: 1.5, id: 1, enabled: true },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2285,9 +3540,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.addchargeschedule(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.addchargeschedule(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2298,22 +3561,46 @@ try {
 </details>
 
 <details>
-<summary><code>addpreconditionschedule(request: VehicleCommands.AddpreconditionscheduleRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>addpreconditionschedule(request: VehicleCommands.AddpreconditionscheduleRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.addpreconditionschedule({ vehicleTag, body });
+  const response = await client.vehicleCommands.addpreconditionschedule({
+    vehicleTag: "some example string",
+    body: { lat: 1.5, lon: 1.5, id: 1, enabled: true },
+  });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.addpreconditionschedule({
+  vehicleTag: "some example string",
+  body: { lat: 1.5, lon: 1.5, id: 1, enabled: true },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2338,9 +3625,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.addpreconditionschedule(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.addpreconditionschedule(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2351,22 +3646,46 @@ try {
 </details>
 
 <details>
-<summary><code>adjustmediavolume(request: VehicleCommands.AdjustmediavolumeRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>adjustmediavolume(request: VehicleCommands.AdjustmediavolumeRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.adjustmediavolume({ vehicleTag, body });
+  const response = await client.vehicleCommands.adjustmediavolume({
+    vehicleTag: "some example string",
+    body: { volume: 1 },
+  });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.adjustmediavolume({
+  vehicleTag: "some example string",
+  body: { volume: 1 },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2391,9 +3710,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.adjustmediavolume(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.adjustmediavolume(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2404,22 +3731,42 @@ try {
 </details>
 
 <details>
-<summary><code>cancelsoftwareupdate(request: VehicleCommands.CancelsoftwareupdateRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>cancelsoftwareupdate(request: VehicleCommands.CancelsoftwareupdateRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.cancelsoftwareupdate({ vehicleTag });
+  const response = await client.vehicleCommands.cancelsoftwareupdate({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.cancelsoftwareupdate({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2443,9 +3790,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.cancelsoftwareupdate(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.cancelsoftwareupdate(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2456,22 +3811,42 @@ try {
 </details>
 
 <details>
-<summary><code>chargemaxrange(request: VehicleCommands.ChargemaxrangeRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>chargemaxrange(request: VehicleCommands.ChargemaxrangeRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.chargemaxrange({ vehicleTag });
+  const response = await client.vehicleCommands.chargemaxrange({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.chargemaxrange({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2495,9 +3870,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.chargemaxrange(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.chargemaxrange(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2508,22 +3891,42 @@ try {
 </details>
 
 <details>
-<summary><code>chargestandard(request: VehicleCommands.ChargestandardRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>chargestandard(request: VehicleCommands.ChargestandardRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.chargestandard({ vehicleTag });
+  const response = await client.vehicleCommands.chargestandard({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.chargestandard({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2547,9 +3950,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.chargestandard(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.chargestandard(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2560,7 +3971,7 @@ try {
 </details>
 
 <details>
-<summary><code>clearPiNtoDriveAdmin(request: VehicleCommands.ClearPiNtoDriveAdminRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>clearPiNtoDriveAdmin(request: VehicleCommands.ClearPiNtoDriveAdminRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
@@ -2575,17 +3986,37 @@ Deactivates PIN to Drive and resets the associated PIN for supported firmware ve
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.clearPiNtoDriveAdmin({ vehicleTag });
+  const response = await client.vehicleCommands.clearPiNtoDriveAdmin({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.clearPiNtoDriveAdmin({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2609,9 +4040,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.clearPiNtoDriveAdmin(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.clearPiNtoDriveAdmin(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2622,22 +4061,42 @@ try {
 </details>
 
 <details>
-<summary><code>closechargeportdoor(request: VehicleCommands.ClosechargeportdoorRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>closechargeportdoor(request: VehicleCommands.ClosechargeportdoorRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.closechargeportdoor({ vehicleTag });
+  const response = await client.vehicleCommands.closechargeportdoor({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.closechargeportdoor({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2661,9 +4120,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.closechargeportdoor(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.closechargeportdoor(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2674,22 +4141,46 @@ try {
 </details>
 
 <details>
-<summary><code>enableordisableGuestMode(request: VehicleCommands.EnableordisableGuestModeRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>enableordisableGuestMode(request: VehicleCommands.EnableordisableGuestModeRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.enableordisableGuestMode({ vehicleTag, body });
+  const response = await client.vehicleCommands.enableordisableGuestMode({
+    vehicleTag: "some example string",
+    body: { enable: true },
+  });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.enableordisableGuestMode({
+  vehicleTag: "some example string",
+  body: { enable: true },
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2714,9 +4205,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.enableordisableGuestMode(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.enableordisableGuestMode(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2727,7 +4226,7 @@ try {
 </details>
 
 <details>
-<summary><code>eraseuserdata(request: VehicleCommands.EraseuserdataRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>eraseuserdata(request: VehicleCommands.EraseuserdataRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
@@ -2742,17 +4241,37 @@ Erases user data from the vehicle UI. Requires Guest Mode.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.eraseuserdata({ vehicleTag });
+  const response = await client.vehicleCommands.eraseuserdata({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.eraseuserdata({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2776,9 +4295,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.eraseuserdata(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.eraseuserdata(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2789,7 +4316,7 @@ try {
 </details>
 
 <details>
-<summary><code>flashlights(request: VehicleCommands.FlashlightsRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>flashlights(request: VehicleCommands.FlashlightsRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
@@ -2804,17 +4331,35 @@ Briefly flashes vehicle headlights.
 </dd>
 </dl>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.flashlights({ vehicleTag });
+  const response = await client.vehicleCommands.flashlights({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.flashlights({ vehicleTag: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2838,9 +4383,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.flashlights(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.flashlights(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2851,22 +4404,40 @@ try {
 </details>
 
 <details>
-<summary><code>honkhorn(request: VehicleCommands.HonkhornRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>honkhorn(request: VehicleCommands.HonkhornRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.honkhorn({ vehicleTag });
+  const response = await client.vehicleCommands.honkhorn({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.honkhorn({ vehicleTag: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2890,9 +4461,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.honkhorn(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.honkhorn(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2903,22 +4482,40 @@ try {
 </details>
 
 <details>
-<summary><code>lockdoors(request: VehicleCommands.LockdoorsRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>lockdoors(request: VehicleCommands.LockdoorsRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.lockdoors({ vehicleTag });
+  const response = await client.vehicleCommands.lockdoors({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.lockdoors({ vehicleTag: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2942,9 +4539,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.lockdoors(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.lockdoors(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -2955,22 +4560,42 @@ try {
 </details>
 
 <details>
-<summary><code>nextfavoritemediatrack(request: VehicleCommands.NextfavoritemediatrackRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>nextfavoritemediatrack(request: VehicleCommands.NextfavoritemediatrackRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.nextfavoritemediatrack({ vehicleTag });
+  const response = await client.vehicleCommands.nextfavoritemediatrack({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.nextfavoritemediatrack({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -2994,9 +4619,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.nextfavoritemediatrack(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.nextfavoritemediatrack(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3007,22 +4640,42 @@ try {
 </details>
 
 <details>
-<summary><code>openchargeportdoor(request: VehicleCommands.OpenchargeportdoorRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>openchargeportdoor(request: VehicleCommands.OpenchargeportdoorRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.openchargeportdoor({ vehicleTag });
+  const response = await client.vehicleCommands.openchargeportdoor({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.openchargeportdoor({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -3046,9 +4699,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.openchargeportdoor(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.openchargeportdoor(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3059,22 +4720,42 @@ try {
 </details>
 
 <details>
-<summary><code>startcharging(request: VehicleCommands.StartchargingRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>startcharging(request: VehicleCommands.StartchargingRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.startcharging({ vehicleTag });
+  const response = await client.vehicleCommands.startcharging({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.startcharging({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -3098,9 +4779,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.startcharging(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.startcharging(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3111,22 +4800,44 @@ try {
 </details>
 
 <details>
-<summary><code>startclimatepreconditioning(request: VehicleCommands.StartclimatepreconditioningRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>startclimatepreconditioning(request: VehicleCommands.StartclimatepreconditioningRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.startclimatepreconditioning({ vehicleTag });
+  const response = await client.vehicleCommands.startclimatepreconditioning({
+    vehicleTag: "some example string",
+  });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.startclimatepreconditioning({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -3150,9 +4861,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.startclimatepreconditioning(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.startclimatepreconditioning(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3163,22 +4882,40 @@ try {
 </details>
 
 <details>
-<summary><code>stopcharging(request: VehicleCommands.StopchargingRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>stopcharging(request: VehicleCommands.StopchargingRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.stopcharging({ vehicleTag });
+  const response = await client.vehicleCommands.stopcharging({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.stopcharging({ vehicleTag: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -3202,9 +4939,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.stopcharging(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.stopcharging(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3215,22 +4960,44 @@ try {
 </details>
 
 <details>
-<summary><code>stopclimatepreconditioning(request: VehicleCommands.StopclimatepreconditioningRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>stopclimatepreconditioning(request: VehicleCommands.StopclimatepreconditioningRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.stopclimatepreconditioning({ vehicleTag });
+  const response = await client.vehicleCommands.stopclimatepreconditioning({
+    vehicleTag: "some example string",
+  });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.stopclimatepreconditioning({
+  vehicleTag: "some example string",
+}).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -3254,9 +5021,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.stopclimatepreconditioning(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.stopclimatepreconditioning(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>
@@ -3267,22 +5042,40 @@ try {
 </details>
 
 <details>
-<summary><code>unlockdoors(request: VehicleCommands.UnlockdoorsRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ResponseError&gt;</code></summary>
+<summary><code>unlockdoors(request: VehicleCommands.UnlockdoorsRequest, options?: RequestOptions): ApiPromise&lt;CommandResponse, ApiError&gt;</code></summary>
 
 <dl>
 <dd>
 
-### Usage
+### Direct Usage
 
 <dl>
 <dd>
 
 ```ts
 try {
-  const response = await client.vehicleCommands.unlockdoors({ vehicleTag });
+  const response = await client.vehicleCommands.unlockdoors({ vehicleTag: "some example string" });
   // TODO: Handle 'response' of type CommandResponse
 } catch (err) {
-  // TODO: Handle 'err' of type ResponseError
+  // TODO: Handle 'err' of type ApiError, where 'err.payload' is always the Undeclared arm
+}
+```
+
+</dd>
+</dl>
+
+### Usage as ApiResult
+
+<dl>
+<dd>
+
+```ts
+const result = await client.vehicleCommands.unlockdoors({ vehicleTag: "some example string" }).asApiResult();
+// TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
+if (result.ok) {
+  // TODO: Use 'result.value' of type CommandResponse
+} else {
+  // TODO: Handle 'result', where 'result.payload' is always the Undeclared arm
 }
 ```
 
@@ -3306,9 +5099,17 @@ try {
 <dl>
 <dd>
 
-**OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+**Direct**: `await client.vehicleCommands.unlockdoors(request)`
 
-**OnError**: <code>[ResponseError](src/core/response-error.ts)</code>
+- **OnSuccess**: <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: throws <code>[ApiError](src/core/api-error.ts)</code>, with `err.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm
+
+**As ApiResult**: `await client.vehicleCommands.unlockdoors(request).asApiResult()`
+
+- **OnSuccess**: <code>[ApiResult](src/core/api-promise.ts)&lt;CommandResponse, ApiError&gt;</code>, with `result.value` of type <code>[CommandResponse](src/models/command-response.ts)</code>
+- **OnError**: `result.payload` always the <code>[Undeclared](src/core/api-error.ts)</code> arm, with `result.message`
+
+**Thrown**: <code>[TeslaFleetManagementApiError](src/core/errors.ts)</code> on any operational failure — a caller abort and a programmer error stay outside the family and reach you raw
 
 </dd>
 </dl>

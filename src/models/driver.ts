@@ -14,8 +14,8 @@ export type Driver = {
 };
 
 export const driverSchema: Schema<Driver> = s.object<Driver>({
-  myTeslaUniqueId: s.optional(s.number()),
-  userId: s.optional(s.number()),
+  myTeslaUniqueId: s.optional(s.int()),
+  userId: s.optional(s.int()),
   userIdS: s.optional(s.string()),
   vaultUuid: s.optional(s.string()),
   driverFirstName: s.optional(s.string()),

@@ -12,7 +12,7 @@ export type ChargeHistory = {
 export const chargeHistorySchema: Schema<ChargeHistory> = s.object<ChargeHistory>({
   chargeStartTime: chargeStartTimeSchema,
   chargeDuration: chargeDurationSchema,
-  energyAddedWh: s.number(),
+  energyAddedWh: s.int(),
   _keysMap: {
     chargeStartTime: "charge_start_time",
     chargeDuration: "charge_duration",

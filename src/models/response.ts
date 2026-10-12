@@ -7,6 +7,6 @@ export type Response = {
 };
 
 export const responseSchema: Schema<Response> = s.object<Response>({
-  code: s.number(),
+  code: s.int(),
   message: s.string(),
 });

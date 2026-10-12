@@ -9,5 +9,5 @@ export type DriversResponse = {
 
 export const driversResponseSchema: Schema<DriversResponse> = s.object<DriversResponse>({
   response: s.optional(s.array(s.lazy(() => driverSchema))),
-  count: s.optional(s.number()),
+  count: s.optional(s.int()),
 });

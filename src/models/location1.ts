@@ -7,6 +7,6 @@ export type Location1 = {
 };
 
 export const location1Schema: Schema<Location1> = s.object<Location1>({
-  lat: s.optional(s.number()),
-  long: s.optional(s.number()),
+  lat: s.optional(s.float64()),
+  long: s.optional(s.float64()),
 });

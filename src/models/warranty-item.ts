@@ -15,8 +15,8 @@ export const warrantyItemSchema: Schema<WarrantyItem> = s.object<WarrantyItem>({
   warrantyType: s.optional(s.string()),
   warrantyDisplayName: s.optional(s.string()),
   expirationDate: s.optional(s.dateTime()),
-  expirationOdometer: s.optional(s.number()),
+  expirationOdometer: s.optional(s.int()),
   odometerUnit: s.optional(s.string()),
   warrantyExpiredOn: s.optionalNullable(s.string()),
-  coverageAgeInYears: s.optional(s.number()),
+  coverageAgeInYears: s.optional(s.int()),
 });

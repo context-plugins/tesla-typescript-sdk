@@ -8,5 +8,5 @@ export type ProductsResponse = {
 
 export const productsResponseSchema: Schema<ProductsResponse> = s.object<ProductsResponse>({
   response: s.optional(s.array(s.record(s.string(), s.unknown()))),
-  count: s.optional(s.number()),
+  count: s.optional(s.int()),
 });

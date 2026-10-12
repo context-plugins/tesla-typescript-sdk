@@ -18,7 +18,7 @@ export type ChargingHistoryItem = {
 };
 
 export const chargingHistoryItemSchema: Schema<ChargingHistoryItem> = s.object<ChargingHistoryItem>({
-  sessionId: s.number(),
+  sessionId: s.int(),
   vin: s.string(),
   siteLocationName: s.optional(s.string()),
   chargeStartDateTime: s.optional(s.dateTime()),

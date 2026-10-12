@@ -10,7 +10,7 @@ export type ResponseCalendarHistoryResponse = {
 export const responseCalendarHistoryResponseSchema: Schema<ResponseCalendarHistoryResponse> =
   s.object<ResponseCalendarHistoryResponse>({
     events: s.array(s.lazy(() => eventSchema)),
-    totalEvents: s.number(),
+    totalEvents: s.int(),
     _keysMap: {
       totalEvents: "total_events",
     },

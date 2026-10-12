@@ -15,7 +15,7 @@ export type ResponseOrdersResponse = {
 };
 
 export const responseOrdersResponseSchema: Schema<ResponseOrdersResponse> = s.object<ResponseOrdersResponse>({
-  vehicleMapId: s.number(),
+  vehicleMapId: s.int(),
   referenceNumber: s.string(),
   vin: s.string(),
   orderStatus: s.string(),

@@ -9,5 +9,5 @@ export type OrdersResponse = {
 
 export const ordersResponseSchema: Schema<OrdersResponse> = s.object<OrdersResponse>({
   response: s.array(s.lazy(() => responseOrdersResponseSchema)),
-  count: s.number(),
+  count: s.int(),
 });
