@@ -1,49 +1,33 @@
 import type { ClientOptions } from "./client-options.js";
 import type { ServerBase, UrlTemplate } from "./core/api-request.js";
-import { ConfigurationError } from "./core/errors.js";
 import { resolveBaseUrl } from "./core/url.js";
 import * as s from "./core/validation/index.js";
 
-export const ServerEnvironment = {
-  Production: "production",
-  Environment2: "environment2",
-} as const;
-export type ServerEnvironment = (typeof ServerEnvironment)[keyof typeof ServerEnvironment];
-
 export type Servers = {
-  default: <Path extends string>(subPath: Path) => UrlTemplate<Path>;
+  default: (subPath: string) => UrlTemplate;
+  authServer: (subPath: string) => UrlTemplate;
 };
 
-const productionSchemas = {
-  baseUrl: s.of(s.defaulted(s.string(), "https://fleet-api.prd.na.vn.cloud.tesla.com")),
-};
-
-const environment2Schemas = {
-  baseUrl: s.of(s.defaulted(s.string(), "https://auth.tesla.com/oauth2/v3")),
+const serverSchemas = {
+  default: { baseUrl: s.of(s.defaulted(s.string(), "https://fleet-api.prd.na.vn.cloud.tesla.com")) },
+  authServer: { baseUrl: s.of(s.defaulted(s.string(), "https://auth.tesla.com/oauth2/v3")) },
 };
 
 export function buildServers(options: ClientOptions): Servers {
   const base = {
     default: resolveBaseUrl(defaultServer(options)),
+    authServer: resolveBaseUrl(authServerServer(options)),
   };
   return {
     default: (subPath) => ({ baseUrl: base.default, subPath }),
+    authServer: (subPath) => ({ baseUrl: base.authServer, subPath }),
   };
 }
 
 function defaultServer(options: ClientOptions): ServerBase {
-  const environment = options.serverEnvironment;
-  switch (environment) {
-    case ServerEnvironment.Production:
-    case undefined:
-      return { baseUrl: productionSchemas.baseUrl.decode(options.serverOptions?.baseUrl) };
-    case ServerEnvironment.Environment2:
-      return { baseUrl: environment2Schemas.baseUrl.decode(options.serverOptions?.baseUrl) };
-    default:
-      unknownEnvironment(environment);
-  }
+  return { baseUrl: serverSchemas.default.baseUrl.decode(options.serverOptions?.default?.baseUrl) };
 }
 
-function unknownEnvironment(environment: never): never {
-  throw new ConfigurationError(`Unknown server environment: ${String(environment)}`);
+function authServerServer(options: ClientOptions): ServerBase {
+  return { baseUrl: serverSchemas.authServer.baseUrl.decode(options.serverOptions?.authServer?.baseUrl) };
 }

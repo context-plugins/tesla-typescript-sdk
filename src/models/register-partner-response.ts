@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   responseRegisterPartnerResponseSchema,
   type ResponseRegisterPartnerResponse,
@@ -7,9 +7,14 @@ import {
 
 export type RegisterPartnerResponse = {
   response: ResponseRegisterPartnerResponse;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
 export const registerPartnerResponseSchema: Schema<RegisterPartnerResponse> =
-  s.object<RegisterPartnerResponse>({
-    response: responseRegisterPartnerResponseSchema,
-  });
+  s.object<RegisterPartnerResponse>(
+    {
+      response: responseRegisterPartnerResponseSchema,
+    },
+    { additionalProperties: s.json() },
+  );

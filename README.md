@@ -26,10 +26,9 @@ npm install <path-to-sdk>
 Create one client and reuse it. Configure its behaviour through [ClientOptions](src/client-options.ts).
 
 ```ts
-import { PkceMethod, ServerEnvironment, TeslaFleetManagementApiClient } from "tesla-fleet-management-api";
+import { PkceMethod, TeslaFleetManagementApiClient } from "tesla-fleet-management-api";
 
 const client = new TeslaFleetManagementApiClient({
-  serverEnvironment: ServerEnvironment.Production,
   bearerAuth: "YOUR_BEARER_TOKEN",
   thirdpartytokenAuthorizationCode: {
     clientId: "YOUR_CLIENT_ID",
@@ -41,7 +40,7 @@ const client = new TeslaFleetManagementApiClient({
 });
 ```
 
-Nothing in `ClientOptions` is required — `new TeslaFleetManagementApiClient()` compiles — and each option left out falls back to its default. `serverEnvironment` is spelled out above so the environment a call reaches is visible where the client is built rather than inherited silently.
+Nothing in `ClientOptions` is required — `new TeslaFleetManagementApiClient()` compiles — and each option left out falls back to its default. This API declares one environment, so there is no environment to select and no host to state at the construction site.
 
 ### From CommonJS
 
@@ -51,7 +50,6 @@ The package ships both dialects from a single entry, so `require` works with ful
 import sdk = require("tesla-fleet-management-api");
 
 const client = new sdk.TeslaFleetManagementApiClient({
-  serverEnvironment: sdk.ServerEnvironment.Production,
   bearerAuth: "YOUR_BEARER_TOKEN",
   thirdpartytokenAuthorizationCode: {
     clientId: "YOUR_CLIENT_ID",

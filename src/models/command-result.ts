@@ -1,12 +1,17 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 
 export type CommandResult = {
   result: boolean;
   reason: string;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const commandResultSchema: Schema<CommandResult> = s.object<CommandResult>({
-  result: s.boolean(),
-  reason: s.string(),
-});
+export const commandResultSchema: Schema<CommandResult> = s.object<CommandResult>(
+  {
+    result: s.boolean(),
+    reason: s.string(),
+  },
+  { additionalProperties: s.json() },
+);

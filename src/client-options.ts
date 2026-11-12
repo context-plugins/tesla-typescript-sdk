@@ -5,7 +5,6 @@ import type {
 } from "./core/auth/credentials.js";
 import type { OAuth2RefreshableTokenStrategy, OAuth2TokenStrategy } from "./core/auth/oauth2-strategies.js";
 import type { CoreClientOptions } from "./core/client-options.js";
-import { ServerEnvironment } from "./servers.js";
 
 export type ClientOptions = SdkClientOptions & CoreClientOptions;
 
@@ -21,18 +20,15 @@ type SdkClientOptions = ServerOptions & {
     | undefined;
 };
 
-type ServerOptions =
-  | {
-      readonly serverEnvironment?: typeof ServerEnvironment.Production;
-      /** Production */
-      readonly serverOptions?: {
-        baseUrl?: string;
-      };
-    }
-  | {
-      readonly serverEnvironment: typeof ServerEnvironment.Environment2;
-      /** Production */
-      readonly serverOptions?: {
-        baseUrl?: string;
-      };
+type ServerOptions = {
+  readonly serverOptions?: {
+    /** Production */
+    default?: {
+      baseUrl?: string;
     };
+    /** Production */
+    authServer?: {
+      baseUrl?: string;
+    };
+  };
+};

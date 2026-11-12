@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 
 export type Driver = {
   myTeslaUniqueId?: number;
@@ -11,27 +11,32 @@ export type Driver = {
   granularAccess?: Record<string, unknown>;
   activePubkeys?: string[];
   publicKey?: string;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const driverSchema: Schema<Driver> = s.object<Driver>({
-  myTeslaUniqueId: s.optional(s.int()),
-  userId: s.optional(s.int()),
-  userIdS: s.optional(s.string()),
-  vaultUuid: s.optional(s.string()),
-  driverFirstName: s.optional(s.string()),
-  driverLastName: s.optional(s.string()),
-  granularAccess: s.optional(s.record(s.string(), s.unknown())),
-  activePubkeys: s.optional(s.array(s.string())),
-  publicKey: s.optional(s.string()),
-  _keysMap: {
-    myTeslaUniqueId: "my_tesla_unique_id",
-    userId: "user_id",
-    userIdS: "user_id_s",
-    vaultUuid: "vault_uuid",
-    driverFirstName: "driver_first_name",
-    driverLastName: "driver_last_name",
-    granularAccess: "granular_access",
-    activePubkeys: "active_pubkeys",
-    publicKey: "public_key",
+export const driverSchema: Schema<Driver> = s.object<Driver>(
+  {
+    myTeslaUniqueId: s.optional(s.int()),
+    userId: s.optional(s.int()),
+    userIdS: s.optional(s.string()),
+    vaultUuid: s.optional(s.string()),
+    driverFirstName: s.optional(s.string()),
+    driverLastName: s.optional(s.string()),
+    granularAccess: s.optional(s.record(s.string(), s.unknown())),
+    activePubkeys: s.optional(s.array(s.string())),
+    publicKey: s.optional(s.string()),
+    _keysMap: {
+      myTeslaUniqueId: "my_tesla_unique_id",
+      userId: "user_id",
+      userIdS: "user_id_s",
+      vaultUuid: "vault_uuid",
+      driverFirstName: "driver_first_name",
+      driverLastName: "driver_last_name",
+      granularAccess: "granular_access",
+      activePubkeys: "active_pubkeys",
+      publicKey: "public_key",
+    },
   },
-});
+  { additionalProperties: s.json() },
+);

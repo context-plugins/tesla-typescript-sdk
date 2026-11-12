@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import { location1Schema, type Location1 } from "./location1.js";
 
 export type ChargingLocation = {
@@ -12,23 +12,28 @@ export type ChargingLocation = {
   siteClosed?: boolean;
   billingInfo?: string;
   location?: Location1;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const chargingLocationSchema: Schema<ChargingLocation> = s.object<ChargingLocation>({
-  name: s.optional(s.string()),
-  type: s.optional(s.string()),
-  distanceMiles: s.optional(s.float64()),
-  amenities: s.optional(s.string()),
-  availableStalls: s.optional(s.int()),
-  totalStalls: s.optional(s.int()),
-  siteClosed: s.optional(s.boolean()),
-  billingInfo: s.optional(s.string()),
-  location: s.optional(s.lazy(() => location1Schema)),
-  _keysMap: {
-    distanceMiles: "distance_miles",
-    availableStalls: "available_stalls",
-    totalStalls: "total_stalls",
-    siteClosed: "site_closed",
-    billingInfo: "billing_info",
+export const chargingLocationSchema: Schema<ChargingLocation> = s.object<ChargingLocation>(
+  {
+    name: s.optional(s.string()),
+    type: s.optional(s.string()),
+    distanceMiles: s.optional(s.float64()),
+    amenities: s.optional(s.string()),
+    availableStalls: s.optional(s.int()),
+    totalStalls: s.optional(s.int()),
+    siteClosed: s.optional(s.boolean()),
+    billingInfo: s.optional(s.string()),
+    location: s.optional(s.lazy(() => location1Schema)),
+    _keysMap: {
+      distanceMiles: "distance_miles",
+      availableStalls: "available_stalls",
+      totalStalls: "total_stalls",
+      siteClosed: "site_closed",
+      billingInfo: "billing_info",
+    },
   },
-});
+  { additionalProperties: s.json() },
+);

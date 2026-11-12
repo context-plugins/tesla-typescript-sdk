@@ -1,5 +1,5 @@
 import * as s from "../core/validation/index.js";
-import type { Schema } from "../core/validation/schema.js";
+import type { JsonValue, Schema } from "../core/validation/schema.js";
 import {
   responseChargeHistoryResponseSchema,
   type ResponseChargeHistoryResponse,
@@ -7,8 +7,13 @@ import {
 
 export type ChargeHistoryResponse = {
   response: ResponseChargeHistoryResponse;
+  /** Properties the service sent or accepts beyond those declared. */
+  additionalProperties?: Record<string, JsonValue>;
 };
 
-export const chargeHistoryResponseSchema: Schema<ChargeHistoryResponse> = s.object<ChargeHistoryResponse>({
-  response: responseChargeHistoryResponseSchema,
-});
+export const chargeHistoryResponseSchema: Schema<ChargeHistoryResponse> = s.object<ChargeHistoryResponse>(
+  {
+    response: responseChargeHistoryResponseSchema,
+  },
+  { additionalProperties: s.json() },
+);

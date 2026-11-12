@@ -281,10 +281,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.energy.adjustSiteSBackupReserve({
-  energySiteId: "some example string",
-  body: { backupReservePercent: 1 },
-}).asApiResult();
+const result = await client.energy
+  .adjustSiteSBackupReserve({ energySiteId: "some example string", body: { backupReservePercent: 1 } })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type BackupResponse
@@ -366,10 +365,12 @@ try {
 <dd>
 
 ```ts
-const result = await client.energy.adjustSiteSOffGridVehicleChargingReserve({
-  energySiteId: "some example string",
-  body: { offGridVehicleChargingReservePercent: 1 },
-}).asApiResult();
+const result = await client.energy
+  .adjustSiteSOffGridVehicleChargingReserve({
+    energySiteId: "some example string",
+    body: { offGridVehicleChargingReservePercent: 1 },
+  })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type GenericUpdateResponse
@@ -450,9 +451,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.energy.allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid({
-  energySiteId: "some example string",
-}).asApiResult();
+const result = await client.energy
+  .allowDisallowChargingFromTheGridAndExportingEnergyToTheGrid({ energySiteId: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type GenericUpdateResponse
@@ -536,12 +537,14 @@ try {
 <dd>
 
 ```ts
-const result = await client.energy.getBackupOrEnergyHistory({
-  energySiteId: "some example string",
-  kind: Kind.Backup,
-  startDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
-  endDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
-}).asApiResult();
+const result = await client.energy
+  .getBackupOrEnergyHistory({
+    energySiteId: "some example string",
+    kind: Kind.Backup,
+    startDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+    endDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+  })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CalendarHistoryResponse
@@ -704,9 +707,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.energy.getSiteInformationAssetsSettingsFeatures({
-  energySiteId: "some example string",
-}).asApiResult();
+const result = await client.energy
+  .getSiteInformationAssetsSettingsFeatures({ energySiteId: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type SiteInfoResponse
@@ -855,12 +858,14 @@ try {
 <dd>
 
 ```ts
-const result = await client.energy.getWallConnectorChargingHistory({
-  energySiteId: "some example string",
-  kind: KindGetWallConnectorChargingHistory.Charge,
-  startDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
-  endDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
-}).asApiResult();
+const result = await client.energy
+  .getWallConnectorChargingHistory({
+    energySiteId: "some example string",
+    kind: KindGetWallConnectorChargingHistory.Charge,
+    startDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+    endDate: new Date(Date.UTC(2024, 0, 15, 9, 30, 0)),
+  })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type ChargeHistoryResponse
@@ -945,10 +950,12 @@ try {
 <dd>
 
 ```ts
-const result = await client.energy.setSiteModeAutonomousOrSelfConsumption({
-  energySiteId: "some example string",
-  body: { defaultRealMode: DefaultRealMode.Autonomous },
-}).asApiResult();
+const result = await client.energy
+  .setSiteModeAutonomousOrSelfConsumption({
+    energySiteId: "some example string",
+    body: { defaultRealMode: DefaultRealMode.Autonomous },
+  })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type GenericUpdateResponse
@@ -1030,10 +1037,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.energy.updateStormWatchParticipation({
-  energySiteId: "some example string",
-  body: { enabled: true },
-}).asApiResult();
+const result = await client.energy
+  .updateStormWatchParticipation({ energySiteId: "some example string", body: { enabled: true } })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type GenericUpdateResponse
@@ -1115,10 +1121,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.energy.updateTimeOfUseTouSettings({
-  energySiteId: "some example string",
-  body: { touSettings: {} },
-}).asApiResult();
+const result = await client.energy
+  .updateTimeOfUseTouSettings({ energySiteId: "some example string", body: { touSettings: {} } })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type GenericUpdateResponse
@@ -1411,9 +1416,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.partner.registerAPartnerAccount({
-  body: { domain: "some example string" },
-}).asApiResult();
+const result = await client.partner
+  .registerAPartnerAccount({ body: { domain: "some example string" } })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type RegisterPartnerResponse
@@ -1921,9 +1926,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicles.deleteFleetTelemetryConfiguration({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicles
+  .deleteFleetTelemetryConfiguration({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type Record<string, unknown>
@@ -2001,9 +2006,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicles.getAllowedDriversForAVehicle({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicles
+  .getAllowedDriversForAVehicle({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type DriversResponse
@@ -2081,9 +2086,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicles.getEligibleVehicleSubscriptions({
-  vin: "some example string",
-}).asApiResult();
+const result = await client.vehicles
+  .getEligibleVehicleSubscriptions({ vin: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type SiteInfoResponse
@@ -2239,9 +2244,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicles.getEnterpriseRolesForAVehicle({
-  vin: "some example string",
-}).asApiResult();
+const result = await client.vehicles
+  .getEnterpriseRolesForAVehicle({ vin: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type Record<string, unknown>
@@ -2399,9 +2404,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicles.getFleetTelemetryConfiguration({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicles
+  .getFleetTelemetryConfiguration({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type Record<string, unknown>
@@ -2481,9 +2486,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicles.getFleetTelemetryErrorsForAVehicle({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicles
+  .getFleetTelemetryErrorsForAVehicle({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type Record<string, unknown>
@@ -2863,9 +2868,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicles.removeDriverAccessFromAVehicle({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicles
+  .removeDriverAccessFromAVehicle({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type SimpleOkResponse
@@ -2945,10 +2950,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicles.setEnterprisePayerRoles({
-  vin: "some example string",
-  body: { role: "some example string" },
-}).asApiResult();
+const result = await client.vehicles
+  .setEnterprisePayerRoles({ vin: "some example string", body: { role: "some example string" } })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: The call succeeded and resolves to no body
@@ -3422,10 +3426,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.actuatetrunk({
-  vehicleTag: "some example string",
-  body: { whichTrunk: WhichTrunk.Front },
-}).asApiResult();
+const result = await client.vehicleCommands
+  .actuatetrunk({ vehicleTag: "some example string", body: { whichTrunk: WhichTrunk.Front } })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -3507,10 +3510,12 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.addchargeschedule({
-  vehicleTag: "some example string",
-  body: { lat: 1.5, lon: 1.5, id: 1, enabled: true },
-}).asApiResult();
+const result = await client.vehicleCommands
+  .addchargeschedule({
+    vehicleTag: "some example string",
+    body: { lat: 1.5, lon: 1.5, id: 1, enabled: true },
+  })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -3592,10 +3597,12 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.addpreconditionschedule({
-  vehicleTag: "some example string",
-  body: { lat: 1.5, lon: 1.5, id: 1, enabled: true },
-}).asApiResult();
+const result = await client.vehicleCommands
+  .addpreconditionschedule({
+    vehicleTag: "some example string",
+    body: { lat: 1.5, lon: 1.5, id: 1, enabled: true },
+  })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -3677,10 +3684,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.adjustmediavolume({
-  vehicleTag: "some example string",
-  body: { volume: 1 },
-}).asApiResult();
+const result = await client.vehicleCommands
+  .adjustmediavolume({ vehicleTag: "some example string", body: { volume: 1 } })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -3759,9 +3765,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.cancelsoftwareupdate({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .cancelsoftwareupdate({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -3839,9 +3845,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.chargemaxrange({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .chargemaxrange({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -3919,9 +3925,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.chargestandard({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .chargestandard({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -4009,9 +4015,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.clearPiNtoDriveAdmin({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .clearPiNtoDriveAdmin({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -4089,9 +4095,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.closechargeportdoor({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .closechargeportdoor({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -4172,10 +4178,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.enableordisableGuestMode({
-  vehicleTag: "some example string",
-  body: { enable: true },
-}).asApiResult();
+const result = await client.vehicleCommands
+  .enableordisableGuestMode({ vehicleTag: "some example string", body: { enable: true } })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -4264,9 +4269,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.eraseuserdata({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .eraseuserdata({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -4588,9 +4593,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.nextfavoritemediatrack({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .nextfavoritemediatrack({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -4668,9 +4673,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.openchargeportdoor({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .openchargeportdoor({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -4748,9 +4753,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.startcharging({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .startcharging({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -4830,9 +4835,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.startclimatepreconditioning({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .startclimatepreconditioning({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
@@ -4990,9 +4995,9 @@ try {
 <dd>
 
 ```ts
-const result = await client.vehicleCommands.stopclimatepreconditioning({
-  vehicleTag: "some example string",
-}).asApiResult();
+const result = await client.vehicleCommands
+  .stopclimatepreconditioning({ vehicleTag: "some example string" })
+  .asApiResult();
 // TODO: Use 'result.status' and 'result.headers' to read the raw response status and headers
 if (result.ok) {
   // TODO: Use 'result.value' of type CommandResponse
