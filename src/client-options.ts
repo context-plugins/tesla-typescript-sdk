@@ -30,5 +30,9 @@ type ServerOptions = {
     authServer?: {
       baseUrl?: string;
     };
+    /** Production */
+    accessTokenServer?: {
+      baseUrl?: string;
+    };
   };
 };

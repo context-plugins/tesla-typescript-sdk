@@ -6,21 +6,27 @@ import * as s from "./core/validation/index.js";
 export type Servers = {
   default: (subPath: string) => UrlTemplate;
   authServer: (subPath: string) => UrlTemplate;
+  accessTokenServer: (subPath: string) => UrlTemplate;
 };
 
 const serverSchemas = {
   default: { baseUrl: s.of(s.defaulted(s.string(), "https://fleet-api.prd.na.vn.cloud.tesla.com")) },
   authServer: { baseUrl: s.of(s.defaulted(s.string(), "https://auth.tesla.com/oauth2/v3")) },
+  accessTokenServer: {
+    baseUrl: s.of(s.defaulted(s.string(), "https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3")),
+  },
 };
 
 export function buildServers(options: ClientOptions): Servers {
   const base = {
     default: resolveBaseUrl(defaultServer(options)),
     authServer: resolveBaseUrl(authServerServer(options)),
+    accessTokenServer: resolveBaseUrl(accessTokenServerServer(options)),
   };
   return {
     default: (subPath) => ({ baseUrl: base.default, subPath }),
     authServer: (subPath) => ({ baseUrl: base.authServer, subPath }),
+    accessTokenServer: (subPath) => ({ baseUrl: base.accessTokenServer, subPath }),
   };
 }
 
@@ -30,4 +36,12 @@ function defaultServer(options: ClientOptions): ServerBase {
 
 function authServerServer(options: ClientOptions): ServerBase {
   return { baseUrl: serverSchemas.authServer.baseUrl.decode(options.serverOptions?.authServer?.baseUrl) };
+}
+
+function accessTokenServerServer(options: ClientOptions): ServerBase {
+  return {
+    baseUrl: serverSchemas.accessTokenServer.baseUrl.decode(
+      options.serverOptions?.accessTokenServer?.baseUrl,
+    ),
+  };
 }

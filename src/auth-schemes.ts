@@ -27,7 +27,7 @@ export function buildAuthSchemes(
       options.thirdpartytokenAuthorizationCodeStrategy ??
         oauth2AuthorizationCodeStrategy({
           authorizationUrl: servers.authServer("/authorize"),
-          tokenUrl: servers.authServer("/token"),
+          tokenUrl: servers.accessTokenServer("/token"),
           rawClient,
           placement: "body",
         }),
@@ -36,7 +36,7 @@ export function buildAuthSchemes(
       options.thirdpartytokenClientCredentials,
       options.thirdpartytokenClientCredentialsStrategy ??
         oauth2ClientCredentialsStrategy({
-          tokenUrl: servers.authServer("/token"),
+          tokenUrl: servers.accessTokenServer("/token"),
           rawClient,
           placement: "body",
         }),

@@ -317,8 +317,8 @@ A scheme **contributes** headers, query parameters and cookies rather than mutat
 
 | Flow | Token endpoint | Client credentials travel |
 | --- | --- | --- |
-| `thirdpartytokenAuthorizationCode` | `authServer` + `/token` | in the token request's form body |
-| `thirdpartytokenClientCredentials` | `authServer` + `/token` | in the token request's form body |
+| `thirdpartytokenAuthorizationCode` | `accessTokenServer` + `/token` | in the token request's form body |
+| `thirdpartytokenClientCredentials` | `accessTokenServer` + `/token` | in the token request's form body |
 
 The authorization-code grant differs in three ways. It needs a human, so `promptForAuthorizationCode` is a **required** member of its credentials: the SDK builds the authorization URL from `authServer` + `/authorize` and hands it over, and never opens it itself. PKCE is on by default — `pkce` defaults to `PkceMethod.S256`, and `null` disables it, which then requires a client secret or the scheme throws `AuthError` before prompting. And it is the only grant that can refresh, so acquisition is a ladder: live cache, then a refresh attempt, then a full re-authorization. **A prompt that rejects is an `AuthError`, not a transport failure** — the user declined, closed the window, or your callback threw — and it carries your error as `cause` with no token request sent. That is the distinction to catch on: a `ConnectionError` invites a retry, a declined consent needs the user asked again. Two rejections pass through as themselves rather than being wrapped: a `ConnectionError` or `TimeoutError` raised while acquiring, and — when you cancelled the call underneath the prompt — the signal's own `reason`. No timeout covers the prompt; the call's signal is the only thing that ends it.
 
@@ -336,7 +336,7 @@ The authorization-code grant differs in three ways. It needs a human, so `prompt
 
 **A 401 invalidates the cached credential.** On a **401** — 401 only, not 403 — the SDK clears whatever that operation's scheme had cached, so the *next* call re-acquires. The current request still rejects with the operation's `ApiError`. The credential fields are on `ClientOptions`.
 
-**serverOptions.** 2 logical servers; each operation is bound to one at generation time, and a block carries a **Server** bullet only when its group is not `default`. Override `serverOptions.default` and `serverOptions.authServer`.
+**serverOptions.** 3 logical servers; each operation is bound to one at generation time, and a block carries a **Server** bullet only when its group is not `default`. Override `serverOptions.default`, `serverOptions.authServer` and `serverOptions.accessTokenServer`.
 
 **Base URLs and overrides.** One row per group, and every cell is overridden at `serverOptions.<group>.<name>`, where `<name>` is `baseUrl` for the whole template or the variable name for one substitution. An override merges with the built-in defaults **key by key**.
 
@@ -344,6 +344,7 @@ The authorization-code grant differs in three ways. It needs a human, so `prompt
 | --- | --- | --- |
 | `default` | `https://fleet-api.prd.na.vn.cloud.tesla.com` | — |
 | `authServer` | `https://auth.tesla.com/oauth2/v3` | — |
+| `accessTokenServer` | `https://fleet-auth.prd.vn.cloud.tesla.com/oauth2/v3` | — |
 
 A `baseUrl` override replaces the template verbatim; variable values are percent-encoded into it. Server variables are filled in once, as the client is built; only the path parameters are expanded per request.
 
