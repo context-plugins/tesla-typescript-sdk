@@ -213,6 +213,7 @@ export function oauth2AuthorizationCodeStrategy(config: {
           { name: "grant_type", value: "authorization_code", schema: s.string() },
           { name: "code", value: code, schema: s.string() },
           { name: "redirect_uri", value: credentials.redirectUri, schema: s.string() },
+          { name: "audience", value: credentials.audience, schema: s.string() },
           ...(pkce === undefined
             ? []
             : [{ name: "code_verifier", value: pkce.verifier, schema: s.string() }]),

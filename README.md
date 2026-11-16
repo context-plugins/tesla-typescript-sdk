@@ -33,6 +33,7 @@ const client = new TeslaFleetManagementApiClient({
   thirdpartytokenAuthorizationCode: {
     clientId: "YOUR_CLIENT_ID",
     redirectUri: "YOUR_REDIRECT_URI",
+    audience: "https://fleet-api.prd.na.vn.cloud.tesla.com",
     pkce: PkceMethod.S256,
     promptForAuthorizationCode: (authorizationUrl, signal) => Promise.resolve("YOUR_AUTHORIZATION_CODE"),
   },
@@ -58,6 +59,7 @@ const client = new sdk.TeslaFleetManagementApiClient({
   thirdpartytokenAuthorizationCode: {
     clientId: "YOUR_CLIENT_ID",
     redirectUri: "YOUR_REDIRECT_URI",
+    audience: "https://fleet-api.prd.na.vn.cloud.tesla.com",
     pkce: sdk.PkceMethod.S256,
     promptForAuthorizationCode: (authorizationUrl, signal) => Promise.resolve("YOUR_AUTHORIZATION_CODE"),
   },
