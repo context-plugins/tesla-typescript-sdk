@@ -74,6 +74,8 @@ export type OAuth2AuthorizationCodeCredentials = {
   readonly clientId: string;
   readonly clientSecret?: string | undefined;
   readonly redirectUri: string;
+  /** Fleet API base URL of the region the token is for, e.g. `https://fleet-api.prd.na.vn.cloud.tesla.com`. Sent on the code exchange. */
+  readonly audience: string;
   /** Space-separated scopes to request. Omit to accept the server default. */
   readonly scope?: string | undefined;
   readonly state?: string | undefined;
