@@ -140,6 +140,7 @@ export function oauth2ClientCredentialsStrategy(config: {
         [
           { name: "grant_type", value: "client_credentials", schema: s.string() },
           ...scopeField(credentials.scope),
+          { name: "audience", value: credentials.audience, schema: s.string() },
           ...placed.fields,
         ],
         signal,

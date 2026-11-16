@@ -36,7 +36,11 @@ const client = new TeslaFleetManagementApiClient({
     pkce: PkceMethod.S256,
     promptForAuthorizationCode: (authorizationUrl, signal) => Promise.resolve("YOUR_AUTHORIZATION_CODE"),
   },
-  thirdpartytokenClientCredentials: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+  thirdpartytokenClientCredentials: {
+    clientId: "YOUR_CLIENT_ID",
+    clientSecret: "YOUR_CLIENT_SECRET",
+    audience: "https://fleet-api.prd.na.vn.cloud.tesla.com",
+  },
 });
 ```
 
@@ -57,7 +61,11 @@ const client = new sdk.TeslaFleetManagementApiClient({
     pkce: sdk.PkceMethod.S256,
     promptForAuthorizationCode: (authorizationUrl, signal) => Promise.resolve("YOUR_AUTHORIZATION_CODE"),
   },
-  thirdpartytokenClientCredentials: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+  thirdpartytokenClientCredentials: {
+    clientId: "YOUR_CLIENT_ID",
+    clientSecret: "YOUR_CLIENT_SECRET",
+    audience: "https://fleet-api.prd.na.vn.cloud.tesla.com",
+  },
 });
 ```
 

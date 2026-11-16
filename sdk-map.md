@@ -36,7 +36,11 @@ const client = new TeslaFleetManagementApiClient({
     pkce: PkceMethod.S256,
     promptForAuthorizationCode: (authorizationUrl, signal) => Promise.resolve("YOUR_AUTHORIZATION_CODE"),
   },
-  thirdpartytokenClientCredentials: { clientId: "YOUR_CLIENT_ID", clientSecret: "YOUR_CLIENT_SECRET" },
+  thirdpartytokenClientCredentials: {
+    clientId: "YOUR_CLIENT_ID",
+    clientSecret: "YOUR_CLIENT_SECRET",
+    audience: "https://fleet-api.prd.na.vn.cloud.tesla.com",
+  },
 });
 ```
 
@@ -303,7 +307,7 @@ import { type ActuateTrunkRequest, actuateTrunkRequestSchema } from "tesla-fleet
 | --- | --- | --- |
 | `bearerAuth` | `bearerAuth` | `Authorization: Bearer <token>` |
 | `thirdpartytokenAuthorizationCode` | `thirdpartytokenAuthorizationCode: { clientId, clientSecret?, redirectUri, scope?, state?, pkce?, promptForAuthorizationCode }` | `Authorization: Bearer <access token>` |
-| `thirdpartytokenClientCredentials` | `thirdpartytokenClientCredentials: { clientId, clientSecret, scope? }` | `Authorization: Bearer <access token>` |
+| `thirdpartytokenClientCredentials` | `thirdpartytokenClientCredentials: { clientId, clientSecret, audience, scope? }` | `Authorization: Bearer <access token>` |
 
 A scheme **contributes** headers, query parameters and cookies rather than mutating the request, so a credential is encoded by exactly the code that encodes an operation's own parameters. The auth layer goes on **last**, which means a scheme's `Authorization` wins over one the operation declared.
 
